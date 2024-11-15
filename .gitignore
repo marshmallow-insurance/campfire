@@ -1,1 +1,23 @@
-node_modules
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# build
+/dist
+dist
+
+# misc
+.DS_Store
+.vscode/**/*
+!.vscode/extensions.json
+
+logs
+*.log
+npm-debug.log*
+/.idea/
+
+# Yalc 
+.yalc/
+yalc.lock
