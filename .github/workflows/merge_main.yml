@@ -1,0 +1,25 @@
+name: Build and Fossa Check
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-fossa-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Setup Node 👾
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install and Build 🔧
+        run: |
+          npm ci
+          npm run check-types
+      - name: Fossa dependency analysis 🐛
+        uses: fossas/fossa-action@main
+        with:
+          api-key: ${{ secrets.FOSSA_API_KEY }}
