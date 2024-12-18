@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": "libs",
+    "rootDir": "libs"
   },
+  "exclude": ["release.config.js", "commitlint.config.ts"]
 }
