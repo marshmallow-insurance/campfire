@@ -11,7 +11,7 @@ const config = {
       prerelease: 'crumbs-${name.replace(/\\//g, "-")}',
     },
   ],
-  repositoryUrl: 'https://github.com/marshmallow-insurance/smores-react.git',
+  repositoryUrl: 'https://github.com/marshmallow-insurance/campfire.git',
   plugins: [
     [
       '@semantic-release/commit-analyzer',
