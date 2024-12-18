@@ -8,7 +8,7 @@ const config = {
     'main',
     {
       name: '(feature|fix|chore)/*',
-      prerelease: 'crumbs-${name.replace(/\\//g, "-")}',
+      prerelease: 'sticks-${name.replace(/\\//g, "-")}',
     },
   ],
   repositoryUrl: 'https://github.com/marshmallow-insurance/campfire.git',
