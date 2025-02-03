@@ -18,7 +18,7 @@
     "typescript": "^5.7.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
+    "@commitlint/cli": "^19.7.1",
     "@commitlint/types": "^19.5.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
