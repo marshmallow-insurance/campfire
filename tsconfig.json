@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "ESNext",
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
