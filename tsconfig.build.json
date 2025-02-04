@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": "libs"
+    "rootDir": "libs",
+    "baseUrl": "libs",
+    "outDir": "./dist"
   },
   "exclude": [
     "release.config.js",

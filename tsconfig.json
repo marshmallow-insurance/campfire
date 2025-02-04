@@ -8,8 +8,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true,
-    "baseUrl": "libs"
+    "skipLibCheck": true
   },
   "include": ["libs/**/*"],
   "exclude": ["node_modules", "dist"]
