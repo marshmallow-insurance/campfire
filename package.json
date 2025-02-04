@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf ./dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: There are no tests yet\"",
     "check-types": "tsc --noEmit",
     "build": "npm run clean && tsc --p tsconfig.build.json",
     "prepublishOnly": "npm run build",
