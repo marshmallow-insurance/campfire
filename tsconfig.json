@@ -10,6 +10,6 @@
     "skipLibCheck": true,
     "baseUrl": "libs"
   },
-  "include": ["libs/**/*", "release.config.js", "commitlint.config.ts"],
+  "include": ["libs/**/*"],
   "exclude": ["node_modules", "dist"]
 }

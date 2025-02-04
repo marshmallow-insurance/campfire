@@ -3,5 +3,11 @@
   "compilerOptions": {
     "rootDir": "libs"
   },
-  "exclude": ["release.config.js", "commitlint.config.ts"]
+  "exclude": [
+    "release.config.js",
+    "commitlint.config.ts",
+    "eslint.config.js",
+    "prettier.config.js",
+    "lint-staged.config.js"
+  ]
 }
