@@ -2,12 +2,7 @@ import { RuleConfigSeverity, UserConfig } from '@commitlint/types'
 
 export const config: UserConfig = {
   parserPreset: 'conventional-changelog-conventionalcommits',
-  ignores: [
-    (commit: string) => commit.startsWith('BREAKING CHANGE:'),
-    (commit: string) => commit.startsWith('BREAKING CHANGES:'),
-    (commit: string) => commit.startsWith('BREAKING-CHANGE:'),
-    (commit: string) => commit.startsWith('BREAKING-CHANGES:'),
-  ],
+  ignores: [(commit: string) => /^BREAKING(?:[- ]CHANGE(?:S)?):/.test(commit)],
   rules: {
     'type-case': [RuleConfigSeverity.Error, 'always', 'lower-case'],
     'type-empty': [RuleConfigSeverity.Error, 'never'],

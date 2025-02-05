@@ -53,8 +53,9 @@ NPM in one fell swoop by:
 3. Press `Run workflow` and select the `main` branch.
 4. Wait for release!
 
-Note: this workflow will fail if the package version is already on the latest,
-so you dont have to worry about deploying the same changes multiple times.
+> [!NOTE] this workflow will fail if the package version is already on the latest, so you dont have to worry about deploying the same changes multiple times.
+
+> [!IMPORTANT] When re-using the release.config in other repos, you need to ensure that the package.json includes a repository URL.
 
 #### Pre-Releases
 
