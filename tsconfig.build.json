@@ -3,7 +3,15 @@
   "compilerOptions": {
     "rootDir": "libs",
     "baseUrl": "libs",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist"
+  },
+  "exports": {
+    "./configs": {
+      "import": "./dist/configs/*",
+      "types": "./dist/configs/*"
+    }
   },
   "exclude": [
     "release.config.js",
