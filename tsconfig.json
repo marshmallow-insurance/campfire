@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
+    "rootDir": "libs",
+    "baseUrl": "libs",
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "Bundler",
@@ -9,8 +11,6 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "rootDir": "libs",
-    "baseUrl": "libs",
     "declaration": true
   },
   "include": ["libs/**/*"],
