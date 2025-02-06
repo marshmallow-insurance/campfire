@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf ./dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: There are no tests yet\"",
     "check-types": "tsc --noEmit",
     "build": "npm run clean && tsc --p tsconfig.build.json",
     "prepublishOnly": "npm run build",
@@ -35,6 +35,10 @@
     "prettier": "^3.4.2",
     "rimraf": "^6.0.1",
     "semantic-release": "^24.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marshmallow-insurance/campfire.git"
   },
   "author": "",
   "license": "ISC"
