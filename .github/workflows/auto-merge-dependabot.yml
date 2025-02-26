@@ -7,3 +7,4 @@ on:
 jobs:
   auto-merge-dependabot:
     uses: marshmallow-insurance/actions-reusable-workflows/.github/workflows/auto-merge-dependabot.yml@main
+    secrets: inherit
