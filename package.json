@@ -15,7 +15,7 @@
     "commitlint": "commitlint --edit"
   },
   "dependencies": {
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
