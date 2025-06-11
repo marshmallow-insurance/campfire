@@ -5,6 +5,17 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "test": "node --test",
+    "test:watch": "node --test --watch",
+    "check-types": "tsc --noEmit",
+    "build": "npm run clean && tsc --p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "prepare": "husky",
+    "pre-commit-lint": "npm run check-types && lint-staged",
+    "commitlint": "commitlint --edit"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -61,17 +72,6 @@
     "semantic-release": {
       "optional": true
     }
-  },
-  "scripts": {
-    "clean": "rimraf ./dist",
-    "test": "node --test",
-    "test:watch": "node --test --watch",
-    "check-types": "tsc --noEmit",
-    "build": "npm run clean && tsc --p tsconfig.build.json",
-    "prepublishOnly": "npm run build",
-    "prepare": "husky",
-    "pre-commit-lint": "npm run check-types && lint-staged",
-    "commitlint": "commitlint --edit"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
