@@ -1,7 +1,6 @@
 name: Bump and Publish
 
 on:
-  workflow_dispatch:
   workflow_call:
 
 permissions:
@@ -50,4 +49,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: npx semantic-release 

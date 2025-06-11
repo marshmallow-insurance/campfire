@@ -8,5 +8,5 @@ permissions:
 
 jobs:
   bump-and-publish:
-    uses: ./libs/workflows/semantic-release.yml
+    uses: ./.github/workflows/shared-semantic-release.yml
     secrets: inherit
