@@ -1,0 +1,53 @@
+name: Bump and Publish
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: write
+
+jobs:
+  bump-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch 🪵
+        run: |
+          # Ensure the branch is either:
+          # - main
+          # OR
+          # - feature/your-branch-name
+          # - fix/your-branch-name
+          # - chore/your-branch-name
+          if [[ "$GITHUB_REF" != "refs/heads/main" && ! "$GITHUB_REF" =~ ^refs/heads/(feature|fix|chore)/.* ]]; then
+            echo "This job can only run on the 'main' branch or a '(feature|fix|chore)/*' branch."
+            exit 1
+          fi
+        shell: bash
+      - name: Generate Token 🔐
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.MARSHMALLOW_CI_APP_ID }}
+          private-key: ${{ secrets.MARSHMALLOW_CI_APP_PRIVATE_KEY }}
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: false
+      - name: Setup Node 👾
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install Dependencies 🔧
+        run: |
+          npm ci
+      - name: Configure Git 🪪
+        run: |
+          git config user.name "marshmallow-ci"
+          git config user.email "ci@marshmallow.co"
+      - name: Generate CHANGELOG.md & Bump & Release to NPM 🦫
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release

@@ -8,6 +8,158 @@
 $ npm install -D @mrshmllw/campfire
 ```
 
+## Usage
+
+### ESLint Configuration
+
+```javascript
+// eslint.config.js
+import { eslintConfig } from '@mrshmllw/campfire'
+
+export default eslintConfig
+```
+
+Or extend it:
+
+```javascript
+// eslint.config.js
+import { eslintConfig } from '@mrshmllw/campfire'
+
+export default [
+  ...eslintConfig,
+  {
+    // Your custom rules
+    rules: {
+      'no-console': 'error'
+    }
+  }
+]
+```
+
+### Prettier Configuration
+
+```javascript
+// prettier.config.js
+import { prettierConfig } from '@mrshmllw/campfire'
+
+export default prettierConfig
+```
+
+### Commitlint Configuration
+
+```javascript
+// commitlint.config.js
+import { commitlintConfig } from '@mrshmllw/campfire'
+
+export default commitlintConfig
+```
+
+### Semantic Release Configuration
+
+```javascript
+// release.config.js
+import { releaseConfig } from '@mrshmllw/campfire'
+
+export default releaseConfig
+```
+
+### Lint-staged Configuration
+
+```javascript
+// lint-staged.config.js
+import { lintStagedConfig } from '@mrshmllw/campfire'
+
+export default lintStagedConfig
+```
+
+### Direct Config Access
+
+You can also import configs directly:
+
+```javascript
+import eslintConfig from '@mrshmllw/campfire/configs/eslint.config.js'
+import prettierConfig from '@mrshmllw/campfire/configs/prettier.config.js'
+```
+
+## GitHub Workflow Templates
+
+Campfire includes standardized GitHub workflow templates that you can copy to your repositories:
+
+### Available Workflows
+
+1. **CI Workflow** (`workflows/ci.yml`)
+   - Runs on pull requests and main branch pushes
+   - Performs linting, type checking, testing, and building
+   - Requires: `lint`, `check-types`, `test`, `build` scripts in package.json
+
+2. **Release Workflow** (`workflows/release.yml`)
+   - Manual workflow dispatch with optional dry-run mode
+   - Handles semantic versioning and NPM publishing
+   - Supports feature branch prereleases
+   - Requires: semantic-release configuration
+
+3. **Auto-merge Dependabot** (`workflows/auto-merge-dependabot.yml`)
+   - Automatically approves and merges Dependabot PRs
+   - Only merges after CI passes
+   - Requires: Marshmallow CI app configuration
+
+4. **Deploy Preview** (`workflows/deploy-preview.yml`)
+   - Deploys preview environments for pull requests
+   - Supports Vercel and Netlify (commented alternative)
+   - Requires: deployment service configuration
+
+### Setup Instructions
+
+1. **Copy workflow files to your repository:**
+   ```bash
+   # Create workflows directory
+   mkdir -p .github/workflows
+   
+   # Copy the workflows you need
+   cp node_modules/@mrshmllw/campfire/dist/workflows/ci.yml .github/workflows/
+   cp node_modules/@mrshmllw/campfire/dist/workflows/release.yml .github/workflows/
+   cp node_modules/@mrshmllw/campfire/dist/workflows/auto-merge-dependabot.yml .github/workflows/
+   ```
+
+   **Or use the CLI tool (recommended):**
+   ```bash
+   # Copy all workflows
+   npx campfire-setup-workflows
+   
+   # Copy specific workflows
+   npx campfire-setup-workflows ci release
+   
+   # See available options
+   npx campfire-setup-workflows --help
+   ```
+
+2. **Ensure your package.json has the required scripts:**
+   ```json
+   {
+     "scripts": {
+       "lint": "eslint .",
+       "check-types": "tsc --noEmit",
+       "test": "vitest run",
+       "build": "vite build"
+     }
+   }
+   ```
+
+3. **Add required secrets/variables to your repository:**
+   - `MARSHMALLOW_CI_APP_ID` (repository variable)
+   - `MARSHMALLOW_CI_APP_PRIVATE_KEY` (repository secret)
+   - `NPM_TOKEN` (repository secret, for release workflow)
+   - Deployment secrets (for preview workflow)
+
+### Workflow Features
+
+- **Consistent Node.js setup** with `.nvmrc` support and npm caching
+- **Branch protection** for release workflows
+- **Semantic release** integration with conventional commits
+- **Automatic Dependabot management**
+- **Preview deployments** for pull requests
+- **Proper permissions** and security practices
+
 ## Making changes
 
 When making changes and creating PR's we use

@@ -1,0 +1,5 @@
+export { default as commitlint } from './commitlint.config.js'
+export { default as eslint } from './eslint.config.js'
+export { default as lintStaged } from './lint-staged.config.js'
+export { default as prettier } from './prettier.config.js'
+export { default as release } from './release.config.js'

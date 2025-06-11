@@ -52,7 +52,7 @@ const config = {
       {
         preset: 'angular',
         releaseRules: [
-          { breaking: true, release: 'major'},
+          { breaking: true, release: 'major' },
           { type: 'feat', release: 'minor' },
           { type: 'fix', release: 'patch' },
           { type: 'docs', release: 'patch' },
