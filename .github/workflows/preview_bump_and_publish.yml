@@ -8,5 +8,5 @@ permissions:
 
 jobs:
   preview-bump-and-publish:
-    uses: ./.github/workflows/reusable/semantic-release-preview.yml
+    uses: ./.github/workflows/shared-semantic-release-preview.yml
     secrets: inherit
