@@ -1,4 +1,4 @@
-name: Bump and Publish
+name: Preview Bump and Publish
 
 on:
   workflow_call:
@@ -7,22 +7,9 @@ permissions:
   contents: write
 
 jobs:
-  bump-and-publish:
+  preview-bump-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Check branch 🪵
-        run: |
-          # Ensure the branch is either:
-          # - main
-          # OR
-          # - feature/your-branch-name
-          # - fix/your-branch-name
-          # - chore/your-branch-name
-          if [[ "$GITHUB_REF" != "refs/heads/main" && ! "$GITHUB_REF" =~ ^refs/heads/(feature|fix|chore)/.* ]]; then
-            echo "This job can only run on the 'main' branch or a '(feature|fix|chore)/*' branch."
-            exit 1
-          fi
-        shell: bash
       - name: Generate Token 🔐
         uses: actions/create-github-app-token@v1
         id: app-token
@@ -45,8 +32,8 @@ jobs:
         run: |
           git config user.name "marshmallow-ci"
           git config user.email "ci@marshmallow.co"
-      - name: Generate CHANGELOG.md & Bump & Release to NPM 🦫
+      - name: Generate preview CHANGELOG.md
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: npx semantic-release --dry-run 
