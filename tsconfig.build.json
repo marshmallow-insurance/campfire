@@ -4,13 +4,7 @@
     "rootDir": "libs",
     "baseUrl": "libs",
     "outDir": "./dist",
-    "declaration": true,
+    "declaration": true
   },
-  "exclude": [
-    "release.config.js",
-    "commitlint.config.ts",
-    "eslint.config.js",
-    "prettier.config.js",
-    "lint-staged.config.js"
-  ]
+  "exclude": ["node_modules", "dist"]
 }
