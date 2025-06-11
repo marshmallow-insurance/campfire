@@ -1,8 +1,6 @@
-name: Auto approve Dependabot pull requests
-on:
-  workflow_call:
-  pull_request_target:
-    branches: [main]
+name: Auto-merge Dependabot
+
+on: workflow_call
 
 jobs:
   approve-and-merge:
