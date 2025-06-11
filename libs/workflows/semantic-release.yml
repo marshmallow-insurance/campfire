@@ -1,7 +1,6 @@
 name: Bump and Publish
 
 on:
-  workflow_dispatch:
   workflow_call:
 
 permissions:
