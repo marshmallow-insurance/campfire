@@ -1,4 +1,4 @@
-name: Preview Bump and Publish
+name: shared-semantic-release-preview
 
 on:
   workflow_call:
@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  preview-bump-and-publish:
+  shared-semantic-release-preview:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Token 🔐
