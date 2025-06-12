@@ -1,9 +1,9 @@
-name: Auto-merge Dependabot
+name: shared-auto-merge-dependabot
 
 on: workflow_call
 
 jobs:
-  approve-and-merge:
+  shared-auto-merge-dependabot:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
     steps:

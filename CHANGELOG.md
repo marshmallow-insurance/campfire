@@ -1,3 +1,14 @@
+## [1.1.0](https://github.com/marshmallow-insurance/campfire/compare/v1.0.0...v1.1.0) (2025-06-12)
+
+### Features
+
+* testing configs ([d83f109](https://github.com/marshmallow-insurance/campfire/commit/d83f10903dd695ff5cd34001a0157c2193b8a037))
+
+### Bug Fixes
+
+* moving workflows into .github folder so they can actually be reused ([77ca9fc](https://github.com/marshmallow-insurance/campfire/commit/77ca9fc41d24a7a9de30aed109e4ac48db01fb23))
+* undoing using reusable subfolder as GHA doesnt allow it ([35bcd35](https://github.com/marshmallow-insurance/campfire/commit/35bcd35fbb827a003e1332d3a2b77248565fc5b7))
+
 ## 1.0.0 (2025-02-06)
 
 ### Features

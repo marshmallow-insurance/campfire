@@ -1,4 +1,4 @@
-name: Bump and Publish
+name: shared-semantic-release
 
 on:
   workflow_call:
@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  bump-and-publish:
+  shared-semantic-release:
     runs-on: ubuntu-latest
     steps:
       - name: Check branch 🪵
