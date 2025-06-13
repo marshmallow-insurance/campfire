@@ -44,6 +44,11 @@ const config = {
       // The prerelease name uses a dynamic expression to replace '/' with '-'
       prerelease: 'crumbs-${name.replace(/\\//g, "-")}',
     },
+    {
+      // Major release branches e.g. v14.x.x, v14.x equivalent to v14.0.0
+      name: 'v+([0-9])?(.{+([0-9]),x}).x',
+      range: "${name.replace(/^v\\//g, '')}",
+    },
   ],
   repositoryUrl,
   plugins: [
