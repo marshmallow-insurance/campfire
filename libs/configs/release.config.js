@@ -39,16 +39,18 @@ const repositoryUrl = getRepositoryUrl()
 const config = {
   branches: [
     'main',
+    'next',
+    {
+      // These branches are used for patches and hotfixes of previous major or minor releases.
+      // e.g v1.x, v1.1.x, etc.
+      name: 'v+([0-9])?(.{+([0-9]),x}).x',
+      range: "${name.replace(/^v/g, '')}",
+    },
     {
       name: '(feature|fix|chore)/*',
       // The prerelease name uses a dynamic expression to replace '/' with '-'
+      // Will result in something like 'crumbs-feature-name' or 'crumbs-fix-name'
       prerelease: 'crumbs-${name.replace(/\\//g, "-")}',
-    },
-    {
-      // Major release branches e.g. v14.x.x, v14.x equivalent to v14.0.0
-      name: 'v+([0-9])?(.{+([0-9]),x}).x',
-      range: "${name.replace(/^v/g, '')}",
-      prerelease: true,
     },
   ],
   repositoryUrl,
