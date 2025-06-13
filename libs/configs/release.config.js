@@ -47,7 +47,7 @@ const config = {
     {
       // Major release branches e.g. v14.x.x, v14.x equivalent to v14.0.0
       name: 'v+([0-9])?(.{+([0-9]),x}).x',
-      range: "${name.replace(/^v\\//g, '')}",
+      range: "${name.replace(/^v/g, '')}",
     },
   ],
   repositoryUrl,
