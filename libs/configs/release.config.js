@@ -50,6 +50,7 @@ const config = {
       name: '(feature|fix|chore)/*',
       // The prerelease name uses a dynamic expression to replace '/' with '-'
       // Will result in something like 'crumbs-feature-name' or 'crumbs-fix-name'
+      channel: 'beta',
       prerelease: 'crumbs-${name.replace(/\\//g, "-")}',
     },
   ],
