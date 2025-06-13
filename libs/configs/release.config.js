@@ -41,7 +41,7 @@ const config = {
     'main',
     'next',
     {
-      // These branches are used for patches and hotfixes of previous major or minor releases.
+      // These branches are used for patches and hotfixes of previous major versions.
       // e.g v1.x, v1.1.x, etc.
       name: 'v+([0-9])?(.{+([0-9]),x}).x',
       range: "${name.replace(/^v/g, '')}",
