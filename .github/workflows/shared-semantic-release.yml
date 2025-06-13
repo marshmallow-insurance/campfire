@@ -2,6 +2,12 @@ name: shared-semantic-release
 
 on:
   workflow_call:
+  workflow_dispatch:
+  push: 
+    branches:
+      - main
+      - next
+      - 'v*'
 
 permissions:
   contents: write
@@ -10,10 +16,19 @@ jobs:
   shared-semantic-release:
     runs-on: ubuntu-latest
     steps:
+      - name: Check `v` prefixed branches on push event 🔍
+        if: github.event_name == 'push'
+        run: |
+          # Check if the push event is on a valid version branch (e.g., v1.x, v2.x.x):
+          if [[ "$GITHUB_EVENT_NAME" == "push" && "$GITHUB_REF" =~ "refs/heads/v*" && !"$GITHUB_REF" =~ ^refs/heads/v([0-9]+)(\.[0-9x]+)*\.x$ ]]; then
+            echo "This job can only run on `v` prefixed branches that match the pattern 'v1.x', 'v2.x.x', etc."
+            exit 1
+          fi
       - name: Check branch 🪵
         run: |
           # Ensure the branch is either:
           # - main
+          # - next
           # OR
           # - feature/your-branch-name
           # - fix/your-branch-name
