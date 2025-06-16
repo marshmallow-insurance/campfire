@@ -1,3 +1,14 @@
+## [2.0.0](https://github.com/marshmallow-insurance/campfire/compare/v1.1.0...v2.0.0) (2025-06-16)
+
+### ⚠ BREAKING CHANGES
+
+* enforcing automatic releases to some branches
+
+### Features
+
+* continuous releases on main, next and maintenance branches ([#128](https://github.com/marshmallow-insurance/campfire/issues/128)) ([95c29ad](https://github.com/marshmallow-insurance/campfire/commit/95c29ad86142ccf01d67383b3f07d08092f2a612))
+* **release-config:** Add `next` branch and support maintenance releases ([#127](https://github.com/marshmallow-insurance/campfire/issues/127)) ([178cdf8](https://github.com/marshmallow-insurance/campfire/commit/178cdf8fa1515d8fbcdc2a2297f69b71e92ef387))
+
 ## [1.1.0](https://github.com/marshmallow-insurance/campfire/compare/v1.0.0...v1.1.0) (2025-06-12)
 
 ### Features
