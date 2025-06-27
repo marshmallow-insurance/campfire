@@ -1,3 +1,9 @@
+## [2.1.0](https://github.com/marshmallow-insurance/campfire/compare/v2.0.0...v2.1.0) (2025-06-25)
+
+### Features
+
+* **publish:** automate publish ([#139](https://github.com/marshmallow-insurance/campfire/issues/139)) ([c8da430](https://github.com/marshmallow-insurance/campfire/commit/c8da43071a0827a2a8c19816dc47b0a57c6cd5e2))
+
 ## [2.0.0](https://github.com/marshmallow-insurance/campfire/compare/v1.1.0...v2.0.0) (2025-06-16)
 
 ### ⚠ BREAKING CHANGES
