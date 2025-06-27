@@ -1,3 +1,9 @@
+## [2.1.1](https://github.com/marshmallow-insurance/campfire/compare/v2.1.0...v2.1.1) (2025-06-27)
+
+### Bug Fixes
+
+* update semantic-release workflows to use marsh ci ([#123](https://github.com/marshmallow-insurance/campfire/issues/123)) ([773d648](https://github.com/marshmallow-insurance/campfire/commit/773d6489fe317a3c03a0eb6aea6a026e533baccd))
+
 ## [2.1.0](https://github.com/marshmallow-insurance/campfire/compare/v2.0.0...v2.1.0) (2025-06-25)
 
 ### Features
