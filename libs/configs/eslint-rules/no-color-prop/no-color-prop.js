@@ -1,4 +1,4 @@
-import { TSESTree, ESLintUtils } from '@typescript-eslint/utils'
+import { ESLintUtils } from '@typescript-eslint/utils'
 
 const COLOR_KEYS = [
   'lollipop',
@@ -62,7 +62,7 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
   defaultOptions: [],
   create(context) {
     return {
-      JSXAttribute(node: TSESTree.JSXAttribute) {
+      JSXAttribute(node) {
         if (node.value?.type === 'Literal') {
           const val = String(node.value.value)
           if (COLOR_KEYS.includes(val)) {

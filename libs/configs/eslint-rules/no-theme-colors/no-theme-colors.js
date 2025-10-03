@@ -1,4 +1,4 @@
-import { TSESTree, ESLintUtils } from '@typescript-eslint/utils'
+import { ESLintUtils } from '@typescript-eslint/utils'
 
 export const noThemeColorsRule = ESLintUtils.RuleCreator((name) => `${name}`)({
   name: 'no-theme-colors',
@@ -16,7 +16,7 @@ export const noThemeColorsRule = ESLintUtils.RuleCreator((name) => `${name}`)({
   defaultOptions: [],
   create(context) {
     return {
-      MemberExpression(node: TSESTree.MemberExpression) {
+      MemberExpression(node) {
         if (
           node.object.type === 'Identifier' &&
           node.object.name === 'theme' &&
