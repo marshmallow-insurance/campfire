@@ -6,5 +6,5 @@
     "outDir": "./dist",
     "declaration": true
   },
-  "exclude": ["node_modules", "dist", "libs/configs/eslint-rules/**/*.js"]
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
 }
