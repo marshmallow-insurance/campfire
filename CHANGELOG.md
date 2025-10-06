@@ -1,3 +1,9 @@
+## [2.2.0](https://github.com/marshmallow-insurance/campfire/compare/v2.1.2...v2.2.0) (2025-10-06)
+
+### Features
+
+* **eslint:** add design token eslint rules [DES-92] ([#200](https://github.com/marshmallow-insurance/campfire/issues/200)) ([bdc6a10](https://github.com/marshmallow-insurance/campfire/commit/bdc6a103d3633b1baf1183326de9318d73e103ba))
+
 ## [2.1.2](https://github.com/marshmallow-insurance/campfire/compare/v2.1.1...v2.1.2) (2025-07-17)
 
 ## [2.1.1](https://github.com/marshmallow-insurance/campfire/compare/v2.1.0...v2.1.1) (2025-06-27)
