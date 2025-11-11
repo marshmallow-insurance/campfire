@@ -2,6 +2,11 @@ name: Bump and Publish
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - next
+      - 'v*'
 
 permissions:
   contents: write
