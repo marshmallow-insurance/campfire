@@ -1,3 +1,5 @@
+## [2.2.6](https://github.com/marshmallow-insurance/campfire/compare/v2.2.5...v2.2.6) (2025-11-19)
+
 ## [2.2.5](https://github.com/marshmallow-insurance/campfire/compare/v2.2.4...v2.2.5) (2025-11-11)
 
 ## [2.2.4](https://github.com/marshmallow-insurance/campfire/compare/v2.2.3...v2.2.4) (2025-11-11)
