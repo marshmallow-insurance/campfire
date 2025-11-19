@@ -12,6 +12,7 @@ const campfireEslintPlugin = {
   },
 }
 
+/** @type {import('eslint').Linter.Config[]} */
 const config = [
   eslintPluginPrettierRecommended,
   {
