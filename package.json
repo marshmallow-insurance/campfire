@@ -65,9 +65,6 @@
     },
     "lint-staged": {
       "optional": true
-    },
-    "semantic-release": {
-      "optional": true
     }
   },
   "devDependencies": {
