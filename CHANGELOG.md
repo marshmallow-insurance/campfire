@@ -1,3 +1,5 @@
+## [2.2.9](https://github.com/marshmallow-insurance/campfire/compare/v2.2.8...v2.2.9) (2025-11-19)
+
 ## [2.2.8](https://github.com/marshmallow-insurance/campfire/compare/v2.2.7...v2.2.8) (2025-11-19)
 
 ### Bug Fixes
