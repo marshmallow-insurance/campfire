@@ -1,3 +1,9 @@
+## [2.2.8](https://github.com/marshmallow-insurance/campfire/compare/v2.2.7...v2.2.8) (2025-11-19)
+
+### Bug Fixes
+
+* eslint type ([c563e64](https://github.com/marshmallow-insurance/campfire/commit/c563e64285e1a1fa207265219c182a09abbab55e))
+
 ## [2.2.7](https://github.com/marshmallow-insurance/campfire/compare/v2.2.6...v2.2.7) (2025-11-19)
 
 ## [2.2.6](https://github.com/marshmallow-insurance/campfire/compare/v2.2.5...v2.2.6) (2025-11-19)
