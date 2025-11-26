@@ -1,3 +1,9 @@
+## [2.3.0](https://github.com/marshmallow-insurance/campfire/compare/v2.2.10...v2.3.0) (2025-11-26)
+
+### Features
+
+* moving to OIDC ([#260](https://github.com/marshmallow-insurance/campfire/issues/260)) ([5be16d8](https://github.com/marshmallow-insurance/campfire/commit/5be16d880f5d920cb9ce17837c01538451d83ded))
+
 ## [2.2.10](https://github.com/marshmallow-insurance/campfire/compare/v2.2.9...v2.2.10) (2025-11-19)
 
 ## [2.2.9](https://github.com/marshmallow-insurance/campfire/compare/v2.2.8...v2.2.9) (2025-11-19)
