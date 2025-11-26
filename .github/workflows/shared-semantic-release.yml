@@ -59,7 +59,6 @@ jobs:
       - name: Generate CHANGELOG.md & Bump & Release to NPM 🦫
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GIT_AUTHOR_NAME: "marshmallow-ci"
           GIT_AUTHOR_EMAIL: "ci@marshmallow.co"
           GIT_COMMITTER_NAME: "marshmallow-ci"
