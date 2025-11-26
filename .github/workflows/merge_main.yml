@@ -17,7 +17,7 @@ jobs:
           node-version: '20'
       - name: Install and Build 🔧
         run: |
-          npm ci
+          npm ci --ignore-scripts --omit=dev
           npm run check-types
       - name: Fossa dependency analysis 🐛
         uses: fossas/fossa-action@93a52ecf7c3ac7eb40f5de77fd69b1a19524de94
