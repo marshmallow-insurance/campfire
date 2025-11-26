@@ -55,7 +55,7 @@ jobs:
           node-version-file: '.nvmrc'
       - name: Install Dependencies 🔧
         run: |
-          npm ci --ignore-scripts --omit=dev
+          npm ci --ignore-scripts
       - name: Generate CHANGELOG.md & Bump & Release to NPM 🦫
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
