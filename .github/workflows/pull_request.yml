@@ -8,6 +8,9 @@ jobs:
   pull-request:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout (to access local action)
+        uses: actions/checkout@v4
+      
       - uses: ./.github/actions/setup-node-project
       
       - name: Run Check Types
