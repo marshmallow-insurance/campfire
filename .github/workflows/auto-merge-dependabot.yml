@@ -2,9 +2,9 @@ name: Approve and Merge Dependabot PRs
 
 on:
   pull_request_target:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   auto-merge-dependabot:
-    uses: ./.github/workflows/shared-auto-merge-dependabot.yml
+    uses: marshmallow-insurance/campfire/.github/workflows/shared-auto-merge-dependabot.yml@main
     secrets: inherit

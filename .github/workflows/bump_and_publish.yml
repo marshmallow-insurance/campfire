@@ -13,5 +13,5 @@ permissions:
 
 jobs:
   bump-and-publish:
-    uses: ./.github/workflows/shared-semantic-release.yml
+    uses: marshmallow-insurance/campfire/.github/workflows/shared-semantic-release.yml@main
     secrets: inherit
