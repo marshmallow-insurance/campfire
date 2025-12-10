@@ -4,12 +4,11 @@ description: 'Shared workflow for semantic release to NPM'
 on:
   workflow_call:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Merge Main"]
-    types:
-      - completed
+  push:
     branches:
       - main
+      - next
+      - 'v*'
 
 permissions:
   contents: write
@@ -19,25 +18,29 @@ jobs:
   shared-semantic-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate workflow_run trigger security 🔒
-        if: github.event_name == 'workflow_run'
+      - name: Validate `v` prefixed branches on push event
+        if: github.event_name == 'push'
         run: |
-          # Security check: Only allow workflow_run triggers from the legitimate merge_main.yml workflow
-          # This prevents malicious workflows with the same name from triggering releases
-          if [[ "${{ github.event.workflow_run.path }}" != ".github/workflows/merge_main.yml" ]]; then
-            echo "❌ Security check failed: workflow_run trigger must come from .github/workflows/merge_main.yml"
-            echo "   Received path: ${{ github.event.workflow_run.path }}"
+          # Check if the push event is on a valid version branch (e.g., v1.x, v2.x.x):
+          if [[ "$GITHUB_EVENT_NAME" == "push" && "$GITHUB_REF" =~ "refs/heads/v*" && !"$GITHUB_REF" =~ ^refs/heads/v([0-9]+)(\.[0-9x]+)*\.x$ ]]; then
+            echo "This job can only run on `v` prefixed branches that match the pattern 'v1.x', 'v2.x.x', etc."
             exit 1
           fi
-          if [[ "${{ github.event.workflow_run.conclusion }}" != "success" ]]; then
-            echo "❌ Security check failed: workflow_run must have succeeded"
-            echo "   Received conclusion: ${{ github.event.workflow_run.conclusion }}"
+      - name: Validate Branch
+        run: |
+          # Ensure the branch is either:
+          # - main
+          # - next
+          # OR
+          # - feature/your-branch-name
+          # - fix/your-branch-name
+          # - chore/your-branch-name
+          if [[ "$GITHUB_REF" != "refs/heads/main" && ! "$GITHUB_REF" =~ ^refs/heads/(feature|fix|chore)/.* ]]; then
+            echo "This job can only run on the 'main' branch or a '(feature|fix|chore)/*' branch."
             exit 1
           fi
-          echo "✅ Security check passed: Valid workflow_run trigger"
-        shell: bash
       
-      - name: Generate Token 🔐
+      - name: Generate GitHub App Token
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
