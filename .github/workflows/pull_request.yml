@@ -10,9 +10,9 @@ jobs:
     steps:
       - name: Checkout (to access local action)
         uses: actions/checkout@v4
-      
-      - uses: ./.github/actions/setup-node-project
-      
+
+      - uses: marshmallow-insurance/campfire/.github/actions/setup-node-project@main
+
       - name: Run Check Types
         run: |
           npm run check-types
@@ -22,6 +22,6 @@ jobs:
       - name: Run Build
         run: |
           npm run build
-      - uses: ./.github/actions/run-fossa-analysis
+      - uses: marshmallow-insurance/campfire/.github/actions/run-fossa-analysis@main
         with:
           api-key: ${{ secrets.FOSSA_API_KEY }}
