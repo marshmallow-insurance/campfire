@@ -1,23 +1,24 @@
-name: Build and Check Types
+name: Pull Request
 on:
+  workflow_call:
+  workflow_dispatch:
   pull_request:
 
 jobs:
-  build-and-check-types:
+  pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - name: Setup Node 👾
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install and Check Types 🔧
+      - uses: ./.github/actions/setup-node-project
+      
+      - name: Run Check Types
         run: |
-          npm ci --ignore-scripts
           npm run check-types
-      - name: Test 🧪
+      - name: Run Tests
         run: |
           npm run test
+      - name: Run Build
+        run: |
+          npm run build
+      - uses: ./.github/actions/run-fossa-analysis
+        with:
+          api-key: ${{ secrets.FOSSA_API_KEY }}
