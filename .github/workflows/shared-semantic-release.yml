@@ -1,9 +1,10 @@
 name: shared-semantic-release
+description: 'Shared workflow for semantic release to NPM'
 
 on:
   workflow_call:
   workflow_dispatch:
-  push: 
+  push:
     branches:
       - main
       - next
@@ -17,7 +18,7 @@ jobs:
   shared-semantic-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Check `v` prefixed branches on push event 🔍
+      - name: Validate `v` prefixed branches on push event
         if: github.event_name == 'push'
         run: |
           # Check if the push event is on a valid version branch (e.g., v1.x, v2.x.x):
@@ -25,7 +26,7 @@ jobs:
             echo "This job can only run on `v` prefixed branches that match the pattern 'v1.x', 'v2.x.x', etc."
             exit 1
           fi
-      - name: Check branch 🪵
+      - name: Validate Branch
         run: |
           # Ensure the branch is either:
           # - main
@@ -38,26 +39,19 @@ jobs:
             echo "This job can only run on the 'main' branch or a '(feature|fix|chore)/*' branch."
             exit 1
           fi
-        shell: bash
-      - name: Generate Token 🔐
+      
+      - name: Generate GitHub App Token
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
           app-id: ${{ vars.MARSHMALLOW_CI_APP_ID }}
           private-key: ${{ secrets.MARSHMALLOW_CI_APP_PRIVATE_KEY }}
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
+      
+      - uses: ./.github/actions/setup-node-project
         with:
-          token: ${{ steps.app-token.outputs.token }}
-          persist-credentials: false
-      - name: Setup Node 👾
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
+          checkout-token: ${{ steps.app-token.outputs.token }}
           registry-url: 'https://registry.npmjs.org'
-      - name: Install Dependencies 🔧
-        run: |
-          npm ci --ignore-scripts
+      
       - name: Generate CHANGELOG.md & Bump & Release to NPM 🦫
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}

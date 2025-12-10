@@ -1,0 +1,31 @@
+name: 'Setup Node Project'
+description: 'Common setup steps: checkout, setup node, and install dependencies'
+
+inputs:
+  checkout-token:
+    description: 'Token to use for checkout (optional, for write permissions)'
+    required: false
+  registry-url:
+    description: 'NPM registry URL (optional)'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v4
+      with:
+        token: ${{ inputs.checkout-token }}
+        persist-credentials: false
+
+    - name: Setup Node 👾
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: '.nvmrc'
+        registry-url: ${{ inputs.registry-url }}
+
+    - name: Install Dependencies 🔧
+      shell: bash
+      run: |
+        npm ci --ignore-scripts
+
