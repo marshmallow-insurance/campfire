@@ -117,6 +117,7 @@ const config = {
       {
         npmPublish: true,
         pkgRoot: '.',
+        provenance: true,
       },
     ],
   ],
