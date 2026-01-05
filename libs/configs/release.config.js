@@ -115,9 +115,11 @@ const config = {
     [
       '@semantic-release/npm',
       {
+        registry: 'https://registry.npmjs.org/',
+        tag: 'latest',
+        provenance: true,
         npmPublish: true,
         pkgRoot: '.',
-        provenance: true,
       },
     ],
   ],
