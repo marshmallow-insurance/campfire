@@ -25,7 +25,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           persist-credentials: false
       
-      - uses: ./.github/actions/setup-node-project
+      - uses: marshmallow-insurance/campfire/.github/actions/setup-node-project@main
         with:
           registry-url: 'https://registry.npmjs.org'
       
