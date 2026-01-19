@@ -1,3 +1,14 @@
+## [2.3.2](https://github.com/marshmallow-insurance/campfire/compare/v2.3.1...v2.3.2) (2026-01-05)
+
+### Bug Fixes
+
+* actions ref ([#275](https://github.com/marshmallow-insurance/campfire/issues/275)) ([f61f8a0](https://github.com/marshmallow-insurance/campfire/commit/f61f8a071a16dedbd81c8bfc53ca336825be2c6f))
+* shared release workflows, absolute paths causing issues downstream ([#288](https://github.com/marshmallow-insurance/campfire/issues/288)) ([bde71ef](https://github.com/marshmallow-insurance/campfire/commit/bde71ef962560b96d47d6e864206a915cbe32ea5))
+
+### Refactors
+
+* Consolidate GitHub Actions workflows with reusable composite actions ([#274](https://github.com/marshmallow-insurance/campfire/issues/274)) ([88dde92](https://github.com/marshmallow-insurance/campfire/commit/88dde928f18ec87690956fba1461c0d9a8e456b7))
+
 ## [2.3.1](https://github.com/marshmallow-insurance/campfire/compare/v2.3.0...v2.3.1) (2025-12-09)
 
 ## [2.3.0](https://github.com/marshmallow-insurance/campfire/compare/v2.2.10...v2.3.0) (2025-11-26)
