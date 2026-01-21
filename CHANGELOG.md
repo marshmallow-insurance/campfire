@@ -1,3 +1,9 @@
+## [2.3.3](https://github.com/marshmallow-insurance/campfire/compare/v2.3.2...v2.3.3) (2026-01-21)
+
+### Bug Fixes
+
+* re-add sm-release/git pkg ([#309](https://github.com/marshmallow-insurance/campfire/issues/309)) ([664b077](https://github.com/marshmallow-insurance/campfire/commit/664b07756d60d2c683d0d20c3ecd1119dbe4ae41))
+
 ## [2.3.2](https://github.com/marshmallow-insurance/campfire/compare/v2.3.1...v2.3.2) (2026-01-05)
 
 ### Bug Fixes
