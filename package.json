@@ -1,6 +1,6 @@
 {
   "name": "@mrshmllw/campfire",
-  "version": "2.3.3",
+  "version": "3.0.0",
   "description": "Collection of toasty utils and configs used by Marshmallow Technology",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

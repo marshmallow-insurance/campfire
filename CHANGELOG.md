@@ -1,3 +1,18 @@
+## [3.0.0](https://github.com/marshmallow-insurance/campfire/compare/v2.3.3...v3.0.0) (2026-01-21)
+
+### ⚠ BREAKING CHANGES
+
+* testing release config change
+
+* fix: changes
+
+* fix: adjust config field name
+* adding multiple rules
+
+* fix: re-adding parserOpts
+
+* breaking change: testing release config change ([#310](https://github.com/marshmallow-insurance/campfire/issues/310)) ([13b91ec](https://github.com/marshmallow-insurance/campfire/commit/13b91ec0743a176f688ef62cf7a81648ad3b78af))
+
 ## [2.3.3](https://github.com/marshmallow-insurance/campfire/compare/v2.3.2...v2.3.3) (2026-01-21)
 
 ### Bug Fixes
