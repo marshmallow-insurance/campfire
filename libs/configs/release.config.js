@@ -60,8 +60,45 @@ const config = {
       '@semantic-release/commit-analyzer',
       {
         preset: 'angular',
+        parserOpts: {
+          // Allow breaking changes to be detected in header/subject, not just footer
+          headerPattern: /^(breaking[\s-]change(?:s)?|.*?)(\(.*\))?:?\s(.*)$/i,
+          headerCorrespondence: ['type', 'scope', 'subject'],
+          noteKeywords: [
+            'BREAKING CHANGE',
+            'BREAKING-CHANGE',
+            'BREAKING CHANGES',
+            'BREAKING-CHANGES',
+            'Breaking Change',
+            'Breaking-Change',
+            'Breaking Changes',
+            'Breaking-Changes',
+            'breaking change',
+            'breaking-change',
+            'breaking changes',
+            'breaking-changes',
+          ],
+        },
         releaseRules: [
           { breaking: true, release: 'major' },
+          // Match breaking changes in various commit fields (case-insensitive)
+          // Matches: "BREAKING CHANGE:", "breaking change:", "BREAKING-CHANGE:", etc.
+          {
+            header: /^breaking[\s-]change(?:s)?:/i,
+            release: 'major',
+          },
+          {
+            subject: /^breaking[\s-]change(?:s)?:/i,
+            release: 'major',
+          },
+          {
+            message: /^breaking[\s-]change(?:s)?:/i,
+            release: 'major',
+          },
+          {
+            type: /^breaking[\s-]change(?:s)?$/i,
+            release: 'major',
+          },
           { type: 'feat', release: 'minor' },
           { type: 'fix', release: 'patch' },
           { type: 'docs', release: 'patch' },
@@ -74,14 +111,6 @@ const config = {
           { type: 'revert', release: 'patch' },
           { type: 'chore', release: 'patch' },
         ],
-        parserOpts: {
-          noteKeywords: [
-            'BREAKING CHANGE',
-            'BREAKING-CHANGE',
-            'BREAKING CHANGES',
-            'BREAKING-CHANGES',
-          ],
-        },
       },
     ],
     [
