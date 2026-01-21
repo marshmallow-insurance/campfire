@@ -60,6 +60,25 @@ const config = {
       '@semantic-release/commit-analyzer',
       {
         preset: 'angular',
+        parserOpts: {
+          // Allow breaking changes to be detected in header/subject, not just footer
+          headerPattern: /^(breaking[\s-]change(?:s)?|.*?)(\(.*\))?:?\s(.*)$/i,
+          headerCorrespondence: ['type', 'scope', 'subject'],
+          noteKeywords: [
+            'BREAKING CHANGE',
+            'BREAKING-CHANGE',
+            'BREAKING CHANGES',
+            'BREAKING-CHANGES',
+            'Breaking Change',
+            'Breaking-Change',
+            'Breaking Changes',
+            'Breaking-Changes',
+            'breaking change',
+            'breaking-change',
+            'breaking changes',
+            'breaking-changes',
+          ],
+        },
         releaseRules: [
           { breaking: true, release: 'major' },
           // Match breaking changes in various commit fields (case-insensitive)
@@ -74,6 +93,10 @@ const config = {
           },
           {
             message: /^breaking[\s-]change(?:s)?:/i,
+            release: 'major',
+          },
+          {
+            type: /^breaking[\s-]change(?:s)?$/i,
             release: 'major',
           },
           { type: 'feat', release: 'minor' },
