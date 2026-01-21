@@ -64,15 +64,9 @@ const config = {
           { breaking: true, release: 'major' },
           // Match breaking changes in subject line (case-insensitive)
           // Matches: "BREAKING CHANGE:", "breaking change:", "BREAKING-CHANGE:", etc.
-          (commit) => {
-            const breakingPattern = /^breaking[\s-]change(?:s)?:/i
-            if (
-              breakingPattern.test(commit.header || '') ||
-              breakingPattern.test(commit.subject || '')
-            ) {
-              return { release: 'major' }
-            }
-            return null
+          {
+            header: /^breaking[\s-]change(?:s)?:/i,
+            release: 'major',
           },
           { type: 'feat', release: 'minor' },
           { type: 'fix', release: 'patch' },
