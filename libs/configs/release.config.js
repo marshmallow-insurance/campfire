@@ -62,6 +62,12 @@ const config = {
         preset: 'angular',
         releaseRules: [
           { breaking: true, release: 'major' },
+          // Match breaking changes in subject line (case-insensitive)
+          // Matches: "BREAKING CHANGE:", "breaking change:", "BREAKING-CHANGE:", etc.
+          {
+            subject: /^breaking[\s-]change(s)?:/i,
+            release: 'major',
+          },
           { type: 'feat', release: 'minor' },
           { type: 'fix', release: 'patch' },
           { type: 'docs', release: 'patch' },
@@ -74,14 +80,6 @@ const config = {
           { type: 'revert', release: 'patch' },
           { type: 'chore', release: 'patch' },
         ],
-        parserOpts: {
-          noteKeywords: [
-            'BREAKING CHANGE',
-            'BREAKING-CHANGE',
-            'BREAKING CHANGES',
-            'BREAKING-CHANGES',
-          ],
-        },
       },
     ],
     [
