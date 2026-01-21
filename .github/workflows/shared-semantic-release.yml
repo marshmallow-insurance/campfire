@@ -3,12 +3,6 @@ description: 'Shared workflow for semantic release to NPM'
 
 on:
   workflow_call:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-      - next
-      - 'v*'
 
 permissions:
   contents: write
