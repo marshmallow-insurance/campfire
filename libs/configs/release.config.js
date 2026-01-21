@@ -62,10 +62,18 @@ const config = {
         preset: 'angular',
         releaseRules: [
           { breaking: true, release: 'major' },
-          // Match breaking changes in subject line (case-insensitive)
+          // Match breaking changes in various commit fields (case-insensitive)
           // Matches: "BREAKING CHANGE:", "breaking change:", "BREAKING-CHANGE:", etc.
           {
             header: /^breaking[\s-]change(?:s)?:/i,
+            release: 'major',
+          },
+          {
+            subject: /^breaking[\s-]change(?:s)?:/i,
+            release: 'major',
+          },
+          {
+            message: /^breaking[\s-]change(?:s)?:/i,
             release: 'major',
           },
           { type: 'feat', release: 'minor' },
