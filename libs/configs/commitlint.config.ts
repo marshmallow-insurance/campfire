@@ -8,7 +8,8 @@ export const config: UserConfig = {
     // - BREAKING-CHANGE:, breaking-change:, Breaking-Change:, etc.
     // - BREAKING CHANGES:, breaking changes:, Breaking Changes:, etc.
     // - BREAKING-CHANGES:, breaking-changes:, Breaking-Changes:, etc.
-    (commit: string) => /^breaking[\s-]change(?:s)?:/i.test(commit),
+    (commit: string) =>
+      /^breaking[\s-]change(?:s)?:/i.test(commit),
   ],
   rules: {
     'type-case': [RuleConfigSeverity.Error, 'always', 'lower-case'],
