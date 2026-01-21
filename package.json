@@ -35,6 +35,8 @@
   ],
   "dependencies": {
     "@commitlint/types": "^20.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
     "conventional-changelog-conventionalcommits": "^9.1.0",
@@ -69,6 +71,7 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/types": "^20.0.0",
     "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
     "@typescript-eslint/rule-tester": "^8.47.0",
