@@ -12,6 +12,8 @@ runs:
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
+        cache: 'npm'
+        package-manager-cache: true
         node-version-file: '.nvmrc'
         registry-url: ${{ inputs.registry-url }}
 
