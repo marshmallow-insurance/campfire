@@ -28,7 +28,8 @@ jobs:
       - uses: marshmallow-insurance/campfire/.github/actions/setup-node-project@main
         with:
           registry-url: 'https://registry.npmjs.org'
-      
+        env: 
+          FONT_AWESOME_AUTH_TOKEN: ${{ secrets.FONT_AWESOME_AUTH_TOKEN }}
       - name: Generate Preview CHANGELOG.md 🦫
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
