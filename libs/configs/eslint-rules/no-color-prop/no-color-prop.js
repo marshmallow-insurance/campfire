@@ -124,6 +124,21 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
       return false
     }
 
+    function needsArrowWrapper(node) {
+      let current = node.parent
+      while (current) {
+        if (
+          current.type === 'ArrowFunctionExpression' ||
+          current.type === 'FunctionExpression'
+        ) {
+          return false
+        }
+        if (current.type === 'TemplateLiteral') return true
+        current = current.parent
+      }
+      return false
+    }
+
     function reportAndFix(node, literalNode, val) {
       const replacement = COLOR_MAP[val]
       const raw =
@@ -237,18 +252,34 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
         ) {
           const val = node.property.name
           const replacement = COLOR_MAP[val]
-          const baseText = context.sourceCode.getText(node.object.object)
-          context.report({
-            node,
-            messageId: 'noColorMember',
-            data: { val, replacement },
-            fix(fixer) {
-              return fixer.replaceText(
-                node,
-                `${baseText}${tokenPathToMemberAccess(replacement)}`,
-              )
-            },
-          })
+          const memberAccess = tokenPathToMemberAccess(replacement)
+
+          if (needsArrowWrapper(node)) {
+            context.report({
+              node,
+              messageId: 'noColorMember',
+              data: { val, replacement },
+              fix(fixer) {
+                return fixer.replaceText(
+                  node,
+                  `({theme}) => theme${memberAccess}`,
+                )
+              },
+            })
+          } else {
+            const baseText = context.sourceCode.getText(node.object.object)
+            context.report({
+              node,
+              messageId: 'noColorMember',
+              data: { val, replacement },
+              fix(fixer) {
+                return fixer.replaceText(
+                  node,
+                  `${baseText}${memberAccess}`,
+                )
+              },
+            })
+          }
         }
       },
       VariableDeclarator(node) {

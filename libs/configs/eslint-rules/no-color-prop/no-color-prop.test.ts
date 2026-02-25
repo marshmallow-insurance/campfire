@@ -180,5 +180,14 @@ ruleTester.run('no-color-prop', noColorPropRule, {
         { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
       ],
     },
+    {
+      name: 'direct theme.colors in template wraps with arrow function',
+      code: 'const X = styled.div`background-color: ${theme.colors.macaroon};`',
+      output:
+        'const X = styled.div`background-color: ${({theme}) => theme.color.illustration.accent2[100]};`',
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
+    },
   ],
 })
