@@ -154,13 +154,14 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
 
     return {
       JSXAttribute(node) {
+        const propName =
+          node.name?.type === 'JSXIdentifier' ? node.name.name : undefined
+        if (typeof propName !== 'string') return
+
         if (node.value?.type === 'Literal') {
           const val = String(node.value.value)
-          if (COLOR_KEYS.includes(val)) {
-            const propName = node.name.name
-            if (isColorContext(propName, val)) {
-              reportAndFix(node, node.value, val)
-            }
+          if (COLOR_KEYS.includes(val) && isColorContext(propName, val)) {
+            reportAndFix(node, node.value, val)
           }
         } else if (
           node.value?.type === 'JSXExpressionContainer' &&
@@ -169,11 +170,8 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
           const literalNode = resolveIdentifierToLiteral(node.value.expression)
           if (literalNode) {
             const val = String(literalNode.value)
-            if (COLOR_KEYS.includes(val)) {
-              const propName = node.name.name
-              if (isColorContext(propName, val)) {
-                reportAndFix(node, literalNode, val)
-              }
+            if (COLOR_KEYS.includes(val) && isColorContext(propName, val)) {
+              reportAndFix(node, literalNode, val)
             }
           }
         }

@@ -40,6 +40,10 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       name: 'expression container with ambiguous color in non-color prop',
       code: 'const x = "cream"; const el = <Loader name={x} />',
     },
+    {
+      name: 'namespaced JSX attribute with legacy color is ignored',
+      code: '<Loader xml:color="lollipop" />',
+    },
   ],
   invalid: [
     {
