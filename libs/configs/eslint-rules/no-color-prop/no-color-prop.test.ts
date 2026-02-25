@@ -44,6 +44,10 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       name: 'namespaced JSX attribute with legacy color is ignored',
       code: '<Loader xml:color="lollipop" />',
     },
+    {
+      name: 'theme.colors outside styled-components is ignored',
+      code: 'const x = theme.colors.macaroon',
+    },
   ],
   invalid: [
     {
@@ -147,8 +151,33 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       code: '<IconStrict iconColor={flag ? "cream" : "other"} />',
       output:
         '<IconStrict iconColor={flag ? "color.surface.base.000" : "other"} />',
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'theme.colors in styled-components callback',
+      code: 'const X = styled.div`color: ${(props) => props.theme.colors.macaroon};`',
+      output:
+        'const X = styled.div`color: ${(props) => props.theme.color.illustration.accent2[100]};`',
       errors: [
-        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
+    },
+    {
+      name: 'theme.colors in styled-components ternary callback',
+      code: "const X = styled.div`bg: ${(props) => (props.on ? props.theme.colors.macaroon : 'transparent')};`",
+      output:
+        "const X = styled.div`bg: ${(props) => (props.on ? props.theme.color.illustration.accent2[100] : 'transparent')};`",
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
+    },
+    {
+      name: 'destructured theme.colors in styled-components callback',
+      code: 'const X = styled.div`color: ${({ theme }) => theme.colors.liquorice};`',
+      output:
+        'const X = styled.div`color: ${({ theme }) => theme.color.text.base};`',
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
       ],
     },
   ],

@@ -87,6 +87,8 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
     messages: {
       noColorProp:
         'Legacy color "{{val}}" is deprecated. Use "{{replacement}}" instead.',
+      noColorMember:
+        'Legacy color "{{val}}" accessed via theme.colors is deprecated. Use "{{replacement}}" instead.',
     },
     schema: [
       {
@@ -113,6 +115,15 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
       return false
     }
 
+    function isInsideTaggedTemplate(node) {
+      let current = node.parent
+      while (current) {
+        if (current.type === 'TaggedTemplateExpression') return true
+        current = current.parent
+      }
+      return false
+    }
+
     function reportAndFix(node, literalNode, val) {
       const replacement = COLOR_MAP[val]
       const raw =
@@ -128,6 +139,18 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
           return fixer.replaceText(literalNode, quote + replacement + quote)
         },
       })
+    }
+
+    function tokenPathToMemberAccess(tokenPath) {
+      let result = ''
+      for (const segment of tokenPath.split('.')) {
+        if (/^\d+$/.test(segment)) {
+          result += `[${segment}]`
+        } else {
+          result += `.${segment}`
+        }
+      }
+      return result
     }
 
     function resolveIdentifierToLiteral(identifierNode) {
@@ -201,6 +224,31 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
               reportAndFix(node, node.value, val)
             }
           }
+        }
+      },
+      MemberExpression(node) {
+        if (
+          node.property?.type === 'Identifier' &&
+          COLOR_KEYS.includes(node.property.name) &&
+          node.object?.type === 'MemberExpression' &&
+          node.object.property?.type === 'Identifier' &&
+          node.object.property.name === 'colors' &&
+          isInsideTaggedTemplate(node)
+        ) {
+          const val = node.property.name
+          const replacement = COLOR_MAP[val]
+          const baseText = context.sourceCode.getText(node.object.object)
+          context.report({
+            node,
+            messageId: 'noColorMember',
+            data: { val, replacement },
+            fix(fixer) {
+              return fixer.replaceText(
+                node,
+                `${baseText}${tokenPathToMemberAccess(replacement)}`,
+              )
+            },
+          })
         }
       },
       VariableDeclarator(node) {
