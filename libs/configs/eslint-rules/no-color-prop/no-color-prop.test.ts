@@ -1,5 +1,6 @@
 import { RuleTester } from '@typescript-eslint/rule-tester'
 import { noColorPropRule } from './no-color-prop'
+import { AST_NODE_TYPES } from '@typescript-eslint/utils'
 
 const ruleTester = new RuleTester({
   languageOptions: {
@@ -39,68 +40,66 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       name: 'expression container with ambiguous color in non-color prop',
       code: 'const x = "cream"; const el = <Loader name={x} />',
     },
-    {
-      name: 'non-ambiguous name in non-color prop via variable',
-      code: 'const myVar = "lollipop"; const el = <Loader name={myVar} />',
-    },
   ],
   invalid: [
     {
       name: 'old color usage with color prop',
       code: '<Loader height="200px" color="lollipop" />',
       output: '<Loader height="200px" color="color.surface.brand.400" />',
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {
       name: 'old color usage with any prop name',
       code: '<Loader height="200px" backgroundColor="marshmallowPink" />',
       output:
         '<Loader height="200px" backgroundColor="color.surface.brand.300" />',
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {
       name: 'ambiguous name in color context',
       code: '<Loader color="cream" />',
       output: '<Loader color="color.surface.base.000" />',
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {
       name: 'object property with legacy color',
       code: 'const obj = { tagText: "liquorice" }',
       output: 'const obj = { tagText: "color.text.base" }',
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.Property }],
     },
     {
       name: 'variable declarator with legacy color',
       code: 'const c = "liquorice"',
       output: 'const c = "color.text.base"',
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.VariableDeclarator },
+      ],
     },
     {
       name: 'strictMode flags ambiguous name everywhere',
       code: '<Loader name="cream" />',
       output: '<Loader name="color.surface.base.000" />',
       options: [{ strictMode: true }],
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {
       name: 'additionalColorProps triggers detection for ambiguous name',
       code: '<Loader variant="mint" />',
       output: '<Loader variant="color.feedback.positive.100" />',
       options: [{ additionalColorProps: ['variant'] }],
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {
       name: 'single quote preservation',
       code: "<Loader color='lollipop' />",
       output: "<Loader color='color.surface.brand.400' />",
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {
       name: 'double quote preservation',
       code: '<Loader color="lollipop" />',
       output: '<Loader color="color.surface.brand.400" />',
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {
       name: 'expression container referencing variable with non-ambiguous legacy color',
@@ -108,8 +107,8 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       output:
         'const myColor = "color.surface.brand.400"; const el = <Loader color={myColor} />',
       errors: [
-        { messageId: 'noColorProp', type: 'VariableDeclarator' },
-        { messageId: 'noColorProp', type: 'JSXAttribute' },
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.VariableDeclarator },
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
       ],
     },
     {
@@ -117,7 +116,17 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       code: 'const x = "cream"; const el = <Loader color={x} />',
       output:
         'const x = "color.surface.base.000"; const el = <Loader color={x} />',
-      errors: [{ messageId: 'noColorProp' }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'non-ambiguous color in non-color prop via variable',
+      code: 'const myVar = "lollipop"; const el = <Loader name={myVar} />',
+      output:
+        'const myVar = "color.surface.brand.400"; const el = <Loader name={myVar} />',
+      errors: [
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.VariableDeclarator },
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+      ],
     },
   ],
 })

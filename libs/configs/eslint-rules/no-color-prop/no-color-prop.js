@@ -115,7 +115,10 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
 
     function reportAndFix(node, literalNode, val) {
       const replacement = COLOR_MAP[val]
-      const raw = literalNode && typeof literalNode.raw === 'string' ? literalNode.raw : ''
+      const raw =
+        literalNode && typeof literalNode.raw === 'string'
+          ? literalNode.raw
+          : ''
       const quote = raw.length > 0 ? raw[0] : '"'
       context.report({
         node,
@@ -127,7 +130,27 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
       })
     }
 
-    const colorVariables = new Map()
+    function resolveIdentifierToLiteral(identifierNode) {
+      const scope = context.sourceCode.getScope(identifierNode)
+      let current = scope
+      while (current) {
+        for (const variable of current.variables) {
+          if (variable.name === identifierNode.name) {
+            for (const def of variable.defs) {
+              if (
+                def.type === 'Variable' &&
+                def.node.init?.type === 'Literal'
+              ) {
+                return def.node.init
+              }
+            }
+            return null
+          }
+        }
+        current = current.upper
+      }
+      return null
+    }
 
     return {
       JSXAttribute(node) {
@@ -143,11 +166,14 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
           node.value?.type === 'JSXExpressionContainer' &&
           node.value.expression?.type === 'Identifier'
         ) {
-          const tracked = colorVariables.get(node.value.expression.name)
-          if (tracked) {
-            const propName = node.name.name
-            if (isColorContext(propName, tracked.val)) {
-              reportAndFix(node, tracked.literalNode, tracked.val)
+          const literalNode = resolveIdentifierToLiteral(node.value.expression)
+          if (literalNode) {
+            const val = String(literalNode.value)
+            if (COLOR_KEYS.includes(val)) {
+              const propName = node.name.name
+              if (isColorContext(propName, val)) {
+                reportAndFix(node, literalNode, val)
+              }
             }
           }
         }
@@ -157,9 +183,12 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
           const val = String(node.value.value)
           if (COLOR_KEYS.includes(val)) {
             let propName
-            if (node.key && (node.key.type === 'Identifier' || node.key.type === 'Literal')) {
-              // For Identifier keys, use `name`; for Literal keys, use `value`
-              propName = node.key.type === 'Identifier' ? node.key.name : node.key.value
+            if (
+              node.key &&
+              (node.key.type === 'Identifier' || node.key.type === 'Literal')
+            ) {
+              propName =
+                node.key.type === 'Identifier' ? node.key.name : node.key.value
             }
             if (typeof propName === 'string' && isColorContext(propName, val)) {
               reportAndFix(node, node.value, val)
@@ -172,7 +201,6 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
           const val = String(node.init.value)
           if (COLOR_KEYS.includes(val)) {
             const varName = node.id.name
-            colorVariables.set(varName, { literalNode: node.init, val })
             if (isColorContext(varName, val)) {
               reportAndFix(node, node.init, val)
             }
