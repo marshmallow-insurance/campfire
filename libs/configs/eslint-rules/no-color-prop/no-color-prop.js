@@ -160,7 +160,7 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
       let result = ''
       for (const segment of tokenPath.split('.')) {
         if (/^\d+$/.test(segment)) {
-          result += `[${segment}]`
+          result += `[${Number(segment)}]`
         } else {
           result += `.${segment}`
         }
@@ -273,10 +273,7 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
               messageId: 'noColorMember',
               data: { val, replacement },
               fix(fixer) {
-                return fixer.replaceText(
-                  node,
-                  `${baseText}${memberAccess}`,
-                )
+                return fixer.replaceText(node, `${baseText}${memberAccess}`)
               },
             })
           }

@@ -189,5 +189,20 @@ ruleTester.run('no-color-prop', noColorPropRule, {
         { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
       ],
     },
+    {
+      name: 'multiple theme.colors in template with mixed references',
+      code: `const Container = styled(Box)\`
+              background-color: \${theme.colors.cream};
+              border: 2px solid \${theme.colors.oatmeal};
+            \``,
+      output: `const Container = styled(Box)\`
+              background-color: \${({theme}) => theme.color.surface.base[0]};
+              border: 2px solid \${({theme}) => theme.color.illustration.neutral[300]};
+            \``,
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
+    },
   ],
 })
