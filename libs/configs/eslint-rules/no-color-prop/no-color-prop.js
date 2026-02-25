@@ -160,7 +160,8 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
       let result = ''
       for (const segment of tokenPath.split('.')) {
         if (/^\d+$/.test(segment)) {
-          result += `[${Number(segment)}]`
+          const num = Number(segment)
+          result += String(num) === segment ? `[${num}]` : `['${segment}']`
         } else {
           result += `.${segment}`
         }

@@ -196,7 +196,7 @@ ruleTester.run('no-color-prop', noColorPropRule, {
               border: 2px solid \${theme.colors.oatmeal};
             \``,
       output: `const Container = styled(Box)\`
-              background-color: \${({theme}) => theme.color.surface.base[0]};
+              background-color: \${({theme}) => theme.color.surface.base['000']};
               border: 2px solid \${({theme}) => theme.color.illustration.neutral[300]};
             \``,
       errors: [
