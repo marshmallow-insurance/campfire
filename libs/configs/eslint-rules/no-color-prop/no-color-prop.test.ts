@@ -103,7 +103,10 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       code: 'const myColor = "lollipop"; const el = <Loader color={myColor} />',
       output:
         'const myColor = "color.surface.brand.400"; const el = <Loader color={myColor} />',
-      errors: [{ messageId: 'noColorProp' }, { messageId: 'noColorProp' }],
+      errors: [
+        { messageId: 'noColorProp', type: 'VariableDeclarator' },
+        { messageId: 'noColorProp', type: 'JSXAttribute' },
+      ],
     },
     {
       name: 'expression container referencing variable with ambiguous color in color prop',
