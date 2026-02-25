@@ -115,7 +115,8 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
 
     function reportAndFix(node, literalNode, val) {
       const replacement = COLOR_MAP[val]
-      const quote = literalNode.raw[0]
+      const raw = literalNode && typeof literalNode.raw === 'string' ? literalNode.raw : ''
+      const quote = raw.length > 0 ? raw[0] : '"'
       context.report({
         node,
         messageId: 'noColorProp',
