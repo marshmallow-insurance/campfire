@@ -48,6 +48,14 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       name: 'theme.colors outside styled-components is ignored',
       code: 'const x = theme.colors.macaroon',
     },
+    {
+      name: 'ignored prop render is not flagged',
+      code: '<IconStrict render="tick" />',
+    },
+    {
+      name: 'ignored prop variant is not flagged',
+      code: '<Tag variant="mint" />',
+    },
   ],
   invalid: [
     {
@@ -92,9 +100,9 @@ ruleTester.run('no-color-prop', noColorPropRule, {
     },
     {
       name: 'additionalColorProps triggers detection for ambiguous name',
-      code: '<Loader variant="mint" />',
-      output: '<Loader variant="color.feedback.positive.100" />',
-      options: [{ additionalColorProps: ['variant'] }],
+      code: '<Loader label="mint" />',
+      output: '<Loader label="color.feedback.positive.100" />',
+      options: [{ additionalColorProps: ['label'] }],
       errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {

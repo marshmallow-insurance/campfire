@@ -59,6 +59,8 @@ const AMBIGUOUS_NAMES = new Set([
   'intercom',
 ])
 
+const IGNORED_PROPS = new Set(['render', 'variant'])
+
 const DEFAULT_COLOR_PROPS = new Set([
   'color',
   'bgColor',
@@ -196,6 +198,7 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
         const propName =
           node.name?.type === 'JSXIdentifier' ? node.name.name : undefined
         if (typeof propName !== 'string') return
+        if (IGNORED_PROPS.has(propName)) return
 
         if (node.value?.type === 'Literal') {
           const val = String(node.value.value)
