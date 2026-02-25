@@ -39,6 +39,10 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       name: 'expression container with ambiguous color in non-color prop',
       code: 'const x = "cream"; const el = <Loader name={x} />',
     },
+    {
+      name: 'non-ambiguous name in non-color prop via variable',
+      code: 'const myVar = "lollipop"; const el = <Loader name={myVar} />',
+    },
   ],
   invalid: [
     {
