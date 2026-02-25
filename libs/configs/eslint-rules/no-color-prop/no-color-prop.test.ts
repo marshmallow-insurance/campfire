@@ -132,5 +132,24 @@ ruleTester.run('no-color-prop', noColorPropRule, {
         { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
       ],
     },
+    {
+      name: 'ternary expression with legacy colors in both branches',
+      code: '<IconStrict backgroundColor={flag ? "apple" : "strawberry"} />',
+      output:
+        '<IconStrict backgroundColor={flag ? "color.feedback.positive.200" : "color.feedback.negative.200"} />',
+      errors: [
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+      ],
+    },
+    {
+      name: 'ternary expression with legacy color in one branch only',
+      code: '<IconStrict iconColor={flag ? "cream" : "other"} />',
+      output:
+        '<IconStrict iconColor={flag ? "color.surface.base.000" : "other"} />',
+      errors: [
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+      ],
+    },
   ],
 })

@@ -163,15 +163,24 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
           if (COLOR_KEYS.includes(val) && isColorContext(propName, val)) {
             reportAndFix(node, node.value, val)
           }
-        } else if (
-          node.value?.type === 'JSXExpressionContainer' &&
-          node.value.expression?.type === 'Identifier'
-        ) {
-          const literalNode = resolveIdentifierToLiteral(node.value.expression)
-          if (literalNode) {
-            const val = String(literalNode.value)
-            if (COLOR_KEYS.includes(val) && isColorContext(propName, val)) {
-              reportAndFix(node, literalNode, val)
+        } else if (node.value?.type === 'JSXExpressionContainer') {
+          const expr = node.value.expression
+          if (expr?.type === 'Identifier') {
+            const literalNode = resolveIdentifierToLiteral(expr)
+            if (literalNode) {
+              const val = String(literalNode.value)
+              if (COLOR_KEYS.includes(val) && isColorContext(propName, val)) {
+                reportAndFix(node, literalNode, val)
+              }
+            }
+          } else if (expr?.type === 'ConditionalExpression') {
+            for (const branch of [expr.consequent, expr.alternate]) {
+              if (branch?.type === 'Literal') {
+                const val = String(branch.value)
+                if (COLOR_KEYS.includes(val) && isColorContext(propName, val)) {
+                  reportAndFix(node, branch, val)
+                }
+              }
             }
           }
         }
