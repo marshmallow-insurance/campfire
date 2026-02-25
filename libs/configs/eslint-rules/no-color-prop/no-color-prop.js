@@ -156,8 +156,12 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
         if (node.value?.type === 'Literal') {
           const val = String(node.value.value)
           if (COLOR_KEYS.includes(val)) {
-            const propName = node.key.name || node.key.value
-            if (isColorContext(propName, val)) {
+            let propName
+            if (node.key && (node.key.type === 'Identifier' || node.key.type === 'Literal')) {
+              // For Identifier keys, use `name`; for Literal keys, use `value`
+              propName = node.key.type === 'Identifier' ? node.key.name : node.key.value
+            }
+            if (typeof propName === 'string' && isColorContext(propName, val)) {
               reportAndFix(node, node.value, val)
             }
           }
