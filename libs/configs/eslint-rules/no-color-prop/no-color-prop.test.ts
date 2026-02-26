@@ -1,5 +1,6 @@
 import { RuleTester } from '@typescript-eslint/rule-tester'
 import { noColorPropRule } from './no-color-prop'
+import { AST_NODE_TYPES } from '@typescript-eslint/utils'
 
 const ruleTester = new RuleTester({
   languageOptions: {
@@ -19,17 +20,197 @@ ruleTester.run('no-color-prop', noColorPropRule, {
       name: 'new theme colour usage',
       code: '<Loader color="color.feedback.negative.100" />',
     },
+    {
+      name: 'non-string value with untracked variable',
+      code: '<Loader color={someVar} />',
+    },
+    {
+      name: 'ambiguous name in non-color prop',
+      code: '<Loader name="cream" />',
+    },
+    {
+      name: 'ambiguous name in non-color prop (mint)',
+      code: '<Tag label="mint" />',
+    },
+    {
+      name: 'ambiguous name x in non-color prop',
+      code: '<Input placeholder="x" />',
+    },
+    {
+      name: 'expression container with ambiguous color in non-color prop',
+      code: 'const x = "cream"; const el = <Loader name={x} />',
+    },
+    {
+      name: 'namespaced JSX attribute with legacy color is ignored',
+      code: '<Loader xml:color="lollipop" />',
+    },
+    {
+      name: 'theme.colors outside styled-components is ignored',
+      code: 'const x = theme.colors.macaroon',
+    },
+    {
+      name: 'ignored prop render is not flagged',
+      code: '<IconStrict render="tick" />',
+    },
+    {
+      name: 'ignored prop variant is not flagged',
+      code: '<Tag variant="mint" />',
+    },
   ],
   invalid: [
     {
       name: 'old color usage with color prop',
       code: '<Loader height="200px" color="lollipop" />',
-      errors: [{ messageId: 'noColorProp' }],
+      output: '<Loader height="200px" color="color.surface.brand.400" />',
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
     },
     {
       name: 'old color usage with any prop name',
       code: '<Loader height="200px" backgroundColor="marshmallowPink" />',
-      errors: [{ messageId: 'noColorProp' }],
+      output:
+        '<Loader height="200px" backgroundColor="color.surface.brand.300" />',
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'ambiguous name in color context',
+      code: '<Loader color="cream" />',
+      output: '<Loader color="color.surface.base.000" />',
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'object property with legacy color',
+      code: 'const obj = { tagText: "liquorice" }',
+      output: 'const obj = { tagText: "color.text.base" }',
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.Property }],
+    },
+    {
+      name: 'variable declarator with legacy color',
+      code: 'const c = "liquorice"',
+      output: 'const c = "color.text.base"',
+      errors: [
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.VariableDeclarator },
+      ],
+    },
+    {
+      name: 'strictMode flags ambiguous name everywhere',
+      code: '<Loader name="cream" />',
+      output: '<Loader name="color.surface.base.000" />',
+      options: [{ strictMode: true }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'additionalColorProps triggers detection for ambiguous name',
+      code: '<Loader label="mint" />',
+      output: '<Loader label="color.feedback.positive.100" />',
+      options: [{ additionalColorProps: ['label'] }],
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'single quote preservation',
+      code: "<Loader color='lollipop' />",
+      output: "<Loader color='color.surface.brand.400' />",
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'double quote preservation',
+      code: '<Loader color="lollipop" />',
+      output: '<Loader color="color.surface.brand.400" />',
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'expression container referencing variable with non-ambiguous legacy color',
+      code: 'const myColor = "lollipop"; const el = <Loader color={myColor} />',
+      output:
+        'const myColor = "color.surface.brand.400"; const el = <Loader color={myColor} />',
+      errors: [
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.VariableDeclarator },
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+      ],
+    },
+    {
+      name: 'expression container referencing variable with ambiguous color in color prop',
+      code: 'const x = "cream"; const el = <Loader color={x} />',
+      output:
+        'const x = "color.surface.base.000"; const el = <Loader color={x} />',
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'non-ambiguous color in non-color prop via variable',
+      code: 'const myVar = "lollipop"; const el = <Loader name={myVar} />',
+      output:
+        'const myVar = "color.surface.brand.400"; const el = <Loader name={myVar} />',
+      errors: [
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.VariableDeclarator },
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+      ],
+    },
+    {
+      name: 'ternary expression with legacy colors in both branches',
+      code: '<IconStrict backgroundColor={flag ? "apple" : "strawberry"} />',
+      output:
+        '<IconStrict backgroundColor={flag ? "color.feedback.positive.200" : "color.feedback.negative.200"} />',
+      errors: [
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+        { messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute },
+      ],
+    },
+    {
+      name: 'ternary expression with legacy color in one branch only',
+      code: '<IconStrict iconColor={flag ? "cream" : "other"} />',
+      output:
+        '<IconStrict iconColor={flag ? "color.surface.base.000" : "other"} />',
+      errors: [{ messageId: 'noColorProp', type: AST_NODE_TYPES.JSXAttribute }],
+    },
+    {
+      name: 'theme.colors in styled-components callback',
+      code: 'const X = styled.div`color: ${(props) => props.theme.colors.macaroon};`',
+      output:
+        'const X = styled.div`color: ${(props) => props.theme.color.illustration.accent2[100]};`',
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
+    },
+    {
+      name: 'theme.colors in styled-components ternary callback',
+      code: "const X = styled.div`bg: ${(props) => (props.on ? props.theme.colors.macaroon : 'transparent')};`",
+      output:
+        "const X = styled.div`bg: ${(props) => (props.on ? props.theme.color.illustration.accent2[100] : 'transparent')};`",
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
+    },
+    {
+      name: 'destructured theme.colors in styled-components callback',
+      code: 'const X = styled.div`color: ${({ theme }) => theme.colors.liquorice};`',
+      output:
+        'const X = styled.div`color: ${({ theme }) => theme.color.text.base};`',
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
+    },
+    {
+      name: 'direct theme.colors in template wraps with arrow function',
+      code: 'const X = styled.div`background-color: ${theme.colors.macaroon};`',
+      output:
+        'const X = styled.div`background-color: ${({theme}) => theme.color.illustration.accent2[100]};`',
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
+    },
+    {
+      name: 'multiple theme.colors in template with mixed references',
+      code: `const Container = styled(Box)\`
+              background-color: \${theme.colors.cream};
+              border: 2px solid \${theme.colors.oatmeal};
+            \``,
+      output: `const Container = styled(Box)\`
+              background-color: \${({theme}) => theme.color.surface.base['000']};
+              border: 2px solid \${({theme}) => theme.color.illustration.neutral[300]};
+            \``,
+      errors: [
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+        { messageId: 'noColorMember', type: AST_NODE_TYPES.MemberExpression },
+      ],
     },
   ],
 })
