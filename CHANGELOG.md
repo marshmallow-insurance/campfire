@@ -1,3 +1,9 @@
+## [3.1.0](https://github.com/marshmallow-insurance/campfire/compare/v3.0.2...v3.1.0) (2026-02-26)
+
+### Features
+
+* **eslint:** enhance `no-color-prop` rule with color mapping and fix function ([#334](https://github.com/marshmallow-insurance/campfire/issues/334)) ([d5003b3](https://github.com/marshmallow-insurance/campfire/commit/d5003b3d12fefcccfd02a652611e89daa2b2fe1c))
+
 ## [3.0.2](https://github.com/marshmallow-insurance/campfire/compare/v3.0.1...v3.0.2) (2026-02-05)
 
 ## [3.0.1](https://github.com/marshmallow-insurance/campfire/compare/v3.0.0...v3.0.1) (2026-01-27)
