@@ -1,3 +1,9 @@
+## [3.1.1](https://github.com/marshmallow-insurance/campfire/compare/v3.1.0...v3.1.1) (2026-03-11)
+
+### Bug Fixes
+
+* **security:** run npm audit fix to address vulnerabilities ([#352](https://github.com/marshmallow-insurance/campfire/issues/352)) ([55eb962](https://github.com/marshmallow-insurance/campfire/commit/55eb96242d18ed0aa3507cdb0ecd336cf7b0b566))
+
 ## [3.1.0](https://github.com/marshmallow-insurance/campfire/compare/v3.0.2...v3.1.0) (2026-02-26)
 
 ### Features
