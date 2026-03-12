@@ -1,3 +1,9 @@
+## [3.2.0](https://github.com/marshmallow-insurance/campfire/compare/v3.1.1...v3.2.0) (2026-03-12)
+
+### Features
+
+* add git-ai workflow ([#355](https://github.com/marshmallow-insurance/campfire/issues/355)) ([6dbe080](https://github.com/marshmallow-insurance/campfire/commit/6dbe0801c67b5fc8ecaad89db42c5a07f13f22e7))
+
 ## [3.1.1](https://github.com/marshmallow-insurance/campfire/compare/v3.1.0...v3.1.1) (2026-03-11)
 
 ### Bug Fixes
