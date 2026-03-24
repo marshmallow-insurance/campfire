@@ -1,3 +1,9 @@
+## [3.2.2](https://github.com/marshmallow-insurance/campfire/compare/v3.2.1...v3.2.2) (2026-03-24)
+
+### Bug Fixes
+
+* forward Font Awesome token to npm ci in setup-node-project ([87e8116](https://github.com/marshmallow-insurance/campfire/commit/87e8116a0204a56a1b256b8c4e94e3cf85bbf714))
+
 ## [3.2.1](https://github.com/marshmallow-insurance/campfire/compare/v3.2.0...v3.2.1) (2026-03-23)
 
 ## [3.2.0](https://github.com/marshmallow-insurance/campfire/compare/v3.1.1...v3.2.0) (2026-03-12)
