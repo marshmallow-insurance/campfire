@@ -5,10 +5,13 @@ inputs:
   registry-url:
     description: 'NPM registry URL (optional)'
     required: false
+  font-awesome-token:
+    description: 'Font Awesome NPM token for private registry (@awesome.me / @fortawesome)'
+    required: false
 
 runs:
   using: 'composite'
-  steps:  
+  steps:
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
@@ -19,6 +22,8 @@ runs:
 
     - name: Install Dependencies
       shell: bash
+      env:
+        FONT_AWESOME_NPM_TOKEN: ${{ inputs.font-awesome-token }}
       run: |
         npm ci --ignore-scripts
 
