@@ -1,3 +1,16 @@
+## [5.0.0](https://github.com/marshmallow-insurance/campfire/compare/v4.0.0...v5.0.0) (2026-03-26)
+
+### ⚠ BREAKING CHANGES
+
+* consumers must switch to subpath imports, e.g.
+import eslintConfig from '@mrshmllw/campfire/configs/eslint.config'
+
+Co-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+### Features
+
+* remove barrel files in favour of subpath imports ([#377](https://github.com/marshmallow-insurance/campfire/issues/377)) ([b365489](https://github.com/marshmallow-insurance/campfire/commit/b365489367c29260f0e11cacdf8612756b523735))
+
 ## [4.0.0](https://github.com/marshmallow-insurance/campfire/compare/v3.2.5...v4.0.0) (2026-03-26)
 
 ### ⚠ BREAKING CHANGES
