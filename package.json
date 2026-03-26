@@ -6,7 +6,9 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "test": "vitest run",
-    "check-types": "tsc --noEmit",
+    "check-types": "concurrently --group \"npm run check-tsc\" \"npm run lint\" -s all --timings true",
+    "check-tsc": "tsc --noEmit",
+    "lint": "eslint .",
     "build": "npm run clean && tsc --p tsconfig.build.json",
     "prepublishOnly": "npm run build",
     "prepare": "husky",
@@ -96,6 +98,7 @@
     "@typescript-eslint/parser": "^8.47.0",
     "@typescript-eslint/rule-tester": "^8.47.0",
     "@typescript-eslint/utils": "^8.49.0",
+    "concurrently": "^9.2.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
