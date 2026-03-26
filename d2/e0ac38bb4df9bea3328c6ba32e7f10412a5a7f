@@ -1,0 +1,9 @@
+package.json
+  267c624f7fca78c3 19-22,38,56-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.18",
+  "base_commit_sha": "d2e0ac38bb4df9bea3328c6ba32e7f10412a5a7f",
+  "prompts": {}
+}
