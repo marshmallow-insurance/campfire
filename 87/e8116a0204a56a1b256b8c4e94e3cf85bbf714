@@ -1,0 +1,23 @@
+package.json
+  267c624f7fca78c3 38-39,56-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.18",
+  "base_commit_sha": "87e8116a0204a56a1b256b8c4e94e3cf85bbf714",
+  "prompts": {
+    "267c624f7fca78c3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ffda7ffb-2265-457e-a27d-d98943b85e4c",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "David Gomes <david.gomes@marshmallow.co>",
+      "messages": [],
+      "total_additions": 8,
+      "total_deletions": 4,
+      "accepted_lines": 8,
+      "overriden_lines": 0
+    }
+  }
+}
