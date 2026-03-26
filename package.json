@@ -2,8 +2,6 @@
   "name": "@mrshmllw/campfire",
   "version": "4.0.0",
   "description": "Collection of toasty utils and configs used by Marshmallow Technology",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "clean": "rimraf ./dist",
@@ -16,10 +14,6 @@
     "commitlint": "commitlint --edit"
   },
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
     "./configs/*": {
       "types": "./dist/configs/*.d.ts",
       "import": "./dist/configs/*.js"
