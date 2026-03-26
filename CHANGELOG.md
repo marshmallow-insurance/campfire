@@ -1,3 +1,25 @@
+## [3.2.3](https://github.com/marshmallow-insurance/campfire/compare/v3.2.2...v3.2.3) (2026-03-24)
+
+## [3.2.2](https://github.com/marshmallow-insurance/campfire/compare/v3.2.1...v3.2.2) (2026-03-24)
+
+### Bug Fixes
+
+* forward Font Awesome token to npm ci in setup-node-project ([87e8116](https://github.com/marshmallow-insurance/campfire/commit/87e8116a0204a56a1b256b8c4e94e3cf85bbf714))
+
+## [3.2.1](https://github.com/marshmallow-insurance/campfire/compare/v3.2.0...v3.2.1) (2026-03-23)
+
+## [3.2.0](https://github.com/marshmallow-insurance/campfire/compare/v3.1.1...v3.2.0) (2026-03-12)
+
+### Features
+
+* add git-ai workflow ([#355](https://github.com/marshmallow-insurance/campfire/issues/355)) ([6dbe080](https://github.com/marshmallow-insurance/campfire/commit/6dbe0801c67b5fc8ecaad89db42c5a07f13f22e7))
+
+## [3.1.1](https://github.com/marshmallow-insurance/campfire/compare/v3.1.0...v3.1.1) (2026-03-11)
+
+### Bug Fixes
+
+* **security:** run npm audit fix to address vulnerabilities ([#352](https://github.com/marshmallow-insurance/campfire/issues/352)) ([55eb962](https://github.com/marshmallow-insurance/campfire/commit/55eb96242d18ed0aa3507cdb0ecd336cf7b0b566))
+
 ## [3.1.0](https://github.com/marshmallow-insurance/campfire/compare/v3.0.2...v3.1.0) (2026-02-26)
 
 ### Features
