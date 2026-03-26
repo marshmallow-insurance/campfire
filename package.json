@@ -1,6 +1,6 @@
 {
   "name": "@mrshmllw/campfire",
-  "version": "3.2.3",
+  "version": "4.0.0",
   "description": "Collection of toasty utils and configs used by Marshmallow Technology",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -38,11 +38,11 @@
   "peerDependencies": {
     "@commitlint/cli": "^20",
     "@commitlint/types": ">=20",
+    "conventional-changelog-conventionalcommits": ">=9",
     "@semantic-release/changelog": ">=6",
     "@semantic-release/git": ">=10",
     "@typescript-eslint/eslint-plugin": ">=8",
     "@typescript-eslint/parser": ">=8",
-    "conventional-changelog-conventionalcommits": ">=9",
     "eslint": "^9 || ^10",
     "eslint-config-prettier": "^9 || >=10",
     "eslint-plugin-prettier": "^4 || >=5",
