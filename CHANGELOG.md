@@ -1,3 +1,54 @@
+## [6.0.0](https://github.com/marshmallow-insurance/campfire/compare/v5.0.0...v6.0.0) (2026-03-26)
+
+### ⚠ BREAKING CHANGES
+
+* `@semantic-release/changelog` and `@semantic-release/git`
+are no longer installed as transitive dependencies. Downstream consumers
+that use semantic-release must add `semantic-release`,
+`@semantic-release/changelog`, and `@semantic-release/git` to their own
+dependencies.
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+* update lock file
+
+* feat!: move eslint dependencies to optional peer dependencies
+
+Move `@typescript-eslint/eslint-plugin`, `@typescript-eslint/parser`,
+`eslint-config-prettier`, and `eslint-plugin-prettier` from
+`dependencies` to optional `peerDependencies`. Downstream consumers
+that don't use eslint will no longer have these packages installed
+transitively.
+* `@typescript-eslint/eslint-plugin`, `@typescript-eslint/parser`,
+`eslint-config-prettier`, and `eslint-plugin-prettier` are no longer
+installed as transitive dependencies. Consumers using campfire's eslint
+config must declare these explicitly in their own `package.json`.
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+* update package-lock
+
+* feat!: add eslint range
+* adding eslint range
+
+* feat!: move commitlint and conventional-changelog to optional peer dependencies
+
+Move `@commitlint/types` and `conventional-changelog-conventionalcommits`
+from `dependencies` to optional `peerDependencies`. This empties the
+`dependencies` section entirely — all packages are now either
+devDependencies or optional peerDependencies.
+* `@commitlint/types` and `conventional-changelog-conventionalcommits`
+are no longer installed as transitive dependencies. Consumers that rely
+on these must declare them explicitly in their own `package.json`.
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+
+* feat: add linting check to CI
+
+### Features
+
+* add linting check to CI ([#376](https://github.com/marshmallow-insurance/campfire/issues/376)) ([f0a5815](https://github.com/marshmallow-insurance/campfire/commit/f0a58150e1f832c9a5fd207abecd31bce75167e7))
+
 ## [5.0.0](https://github.com/marshmallow-insurance/campfire/compare/v4.0.0...v5.0.0) (2026-03-26)
 
 ### ⚠ BREAKING CHANGES
