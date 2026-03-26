@@ -1,0 +1,34 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.18",
+  "base_commit_sha": "b365489367c29260f0e11cacdf8612756b523735",
+  "prompts": {
+    "267c624f7fca78c3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ffda7ffb-2265-457e-a27d-d98943b85e4c",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "David Gomes <david.gomes@marshmallow.co>",
+      "messages": [],
+      "total_additions": 16,
+      "total_deletions": 6,
+      "accepted_lines": 13,
+      "overriden_lines": 0
+    },
+    "d6850652a09046dc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5656a6a1-9972-4435-b1e3-eaaeaf7e23f3",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "David Gomes <david.gomes@marshmallow.co>",
+      "messages": [],
+      "total_additions": 28,
+      "total_deletions": 18,
+      "accepted_lines": 28,
+      "overriden_lines": 0
+    }
+  }
+}
