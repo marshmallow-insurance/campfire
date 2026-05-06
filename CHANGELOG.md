@@ -1,3 +1,9 @@
+## [6.1.0](https://github.com/marshmallow-insurance/campfire/compare/v6.0.0...v6.1.0) (2026-05-06)
+
+### Features
+
+* **eslint-plugin:** export standalone plugin ([#420](https://github.com/marshmallow-insurance/campfire/issues/420)) ([9e0a434](https://github.com/marshmallow-insurance/campfire/commit/9e0a4348b52e830496b53171c1e26fa857ae6e23))
+
 ## [6.0.0](https://github.com/marshmallow-insurance/campfire/compare/v5.0.0...v6.0.0) (2026-03-26)
 
 ### ⚠ BREAKING CHANGES
