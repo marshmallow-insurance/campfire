@@ -2,15 +2,7 @@ import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
-import { noColorPropRule } from './eslint-rules/no-color-prop/no-color-prop.js'
-import { noThemeColorsRule } from './eslint-rules/no-theme-colors/no-theme-colors.js'
-
-const campfireEslintPlugin = {
-  rules: {
-    'no-color-prop': noColorPropRule,
-    'no-theme-colors': noThemeColorsRule,
-  },
-}
+import campfirePlugin from './eslint-plugin.js'
 
 /** @type {import('eslint').Linter.Config[]} */
 const config = [
@@ -25,7 +17,7 @@ const config = [
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      campfire: campfireEslintPlugin,
+      campfire: campfirePlugin,
     },
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn', // Warns on use of 'any'
