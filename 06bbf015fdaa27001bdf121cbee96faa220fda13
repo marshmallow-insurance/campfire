@@ -1,0 +1,23 @@
+package.json
+  439229249899cadf 33,40-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.4",
+  "base_commit_sha": "06bbf015fdaa27001bdf121cbee96faa220fda13",
+  "prompts": {
+    "439229249899cadf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "53ccc9b3-9443-4dc2-884c-0391826186fb",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "David Gomes <david.gomes@marshmallow.co>",
+      "messages": [],
+      "total_additions": 7,
+      "total_deletions": 7,
+      "accepted_lines": 7,
+      "overriden_lines": 0
+    }
+  }
+}
