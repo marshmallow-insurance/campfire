@@ -133,6 +133,12 @@ const config = {
             { type: '*', section: 'Others' },
           ],
         },
+        // Dependabot commit bodies contain raw HTML from GitHub release notes.
+        // Disabling link references prevents conventional-changelog from trying
+        // to process that HTML when generating release notes.
+        writerOpts: {
+          linkReferences: false,
+        },
       },
     ],
     [
