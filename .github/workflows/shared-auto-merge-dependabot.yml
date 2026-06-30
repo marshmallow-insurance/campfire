@@ -24,7 +24,7 @@ jobs:
           echo "should_run=$should_run" >> "$GITHUB_OUTPUT"
 
       - name: Approve a PR
-        if: steps.should-run.outputs.should_run == 'true'
+        if: steps.should-run.outputs.should_run == 'true' && secrets.AUTO_MERGE_DEPENDABOT_PR != ''
         run: |
           CURRENT_DECISION="$(gh pr view "$PR_URL" --json reviewDecision -q '.reviewDecision')"
           if [ "$CURRENT_DECISION" != "APPROVED" ]; then
