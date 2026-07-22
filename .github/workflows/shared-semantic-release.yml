@@ -59,4 +59,16 @@ jobs:
           GIT_AUTHOR_EMAIL: "ci@marshmallow.co"
           GIT_COMMITTER_NAME: "marshmallow-ci"
           GIT_COMMITTER_EMAIL: "ci@marshmallow.co"
-        run: npx semantic-release 
+        # semantic-release bundles commit-analyzer, release-notes-generator, npm and
+        # github, but NOT changelog/git or the conventionalcommits preset. Consumers
+        # only install campfire's `dependencies` (these plugins are dev/peer deps), so
+        # bare `npx semantic-release` resolves a fresh copy without them and fails on
+        # `main` with "Cannot find module '@semantic-release/changelog'". Install the
+        # non-bundled plugins explicitly, pinned to campfire's declared ranges.
+        run: >
+          npx
+          -p semantic-release@^25
+          -p @semantic-release/changelog@^6
+          -p @semantic-release/git@^10
+          -p conventional-changelog-conventionalcommits@^9
+          semantic-release
