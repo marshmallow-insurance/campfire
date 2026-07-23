@@ -23,5 +23,6 @@ jobs:
         run: |
           npm run build
       - uses: marshmallow-insurance/campfire/.github/actions/run-fossa-analysis@main
+        if: secrets.FOSSA_API_KEY != ''
         with:
           api-key: ${{ secrets.FOSSA_API_KEY }}
