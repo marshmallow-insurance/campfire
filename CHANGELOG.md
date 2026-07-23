@@ -1,3 +1,5 @@
+## [6.1.4](https://github.com/marshmallow-insurance/campfire/compare/v6.1.3...v6.1.4) (2026-07-23)
+
 ## [6.1.3](https://github.com/marshmallow-insurance/campfire/compare/v6.1.2...v6.1.3) (2026-07-23)
 
 ### Bug Fixes
