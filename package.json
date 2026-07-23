@@ -1,6 +1,6 @@
 {
   "name": "@mrshmllw/campfire",
-  "version": "6.1.2",
+  "version": "6.1.3",
   "description": "Collection of toasty utils and configs used by Marshmallow Technology",
   "type": "module",
   "scripts": {

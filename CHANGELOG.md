@@ -1,3 +1,9 @@
+## [6.1.3](https://github.com/marshmallow-insurance/campfire/compare/v6.1.2...v6.1.3) (2026-07-23)
+
+### Bug Fixes
+
+* **ci:** install non-bundled semantic-release plugins in shared release ([#516](https://github.com/marshmallow-insurance/campfire/issues/516)) ([8e483c9](https://github.com/marshmallow-insurance/campfire/commit/8e483c968847bd56328e7b9631d20ed7d391e7d3))
+
 ## [6.1.2](https://github.com/marshmallow-insurance/campfire/compare/v6.1.1...v6.1.2) (2026-05-28)
 
 ## [6.1.1](https://github.com/marshmallow-insurance/campfire/compare/v6.1.0...v6.1.1) (2026-05-14)
