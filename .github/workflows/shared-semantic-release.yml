@@ -65,10 +65,12 @@ jobs:
         # bare `npx semantic-release` resolves a fresh copy without them and fails on
         # `main` with "Cannot find module '@semantic-release/changelog'". Install the
         # non-bundled plugins explicitly, pinned to campfire's declared ranges.
-        run: >
-          npx
-          -p semantic-release@^25
-          -p @semantic-release/changelog@^6
-          -p @semantic-release/git@^10
-          -p conventional-changelog-conventionalcommits@^9
-          semantic-release
+        #
+        # Install-then-run rather than `npx -p ...`: the -p flags export
+        # npm_config_package to every child process, so any nested `npx <pkg>` in a
+        # consumer's lifecycle scripts (e.g. prepack) stops resolving <pkg> and hands
+        # it to sh as a literal command (broke smores-internal's 4.3.2 npm publish
+        # with "@tailwindcss/cli: not found").
+        run: |
+          npm install --no-save semantic-release@^25 @semantic-release/changelog@^6 @semantic-release/git@^10 conventional-changelog-conventionalcommits@^9
+          ./node_modules/.bin/semantic-release
