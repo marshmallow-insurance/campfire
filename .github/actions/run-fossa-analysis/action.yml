@@ -10,7 +10,7 @@ runs:
   using: 'composite'
   steps:
     - name: Run Fossa Dependency Analysis 🐛
-      uses: fossas/fossa-action@93a52ecf7c3ac7eb40f5de77fd69b1a19524de94
+      uses: fossas/fossa-action@8dea2e348349fad66e838ce0b365b044c6bf2011 # v2.0.0
       with:
         api-key: ${{ inputs.api-key }}
 
