@@ -1,3 +1,9 @@
+## [7.0.5](https://github.com/marshmallow-insurance/campfire/compare/v7.0.4...v7.0.5) (2026-08-11)
+
+### Bug Fixes
+
+* **ci:** stop npx -p env leak breaking consumer lifecycle scripts ([#521](https://github.com/marshmallow-insurance/campfire/issues/521)) ([5078235](https://github.com/marshmallow-insurance/campfire/commit/5078235636fa461359d2c948726b1996083d001c))
+
 ## [7.0.4](https://github.com/marshmallow-insurance/campfire/compare/v7.0.3...v7.0.4) (2026-08-11)
 
 ### Bug Fixes
