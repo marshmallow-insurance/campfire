@@ -1,3 +1,10 @@
+## [7.0.4](https://github.com/marshmallow-insurance/campfire/compare/v7.0.3...v7.0.4) (2026-08-11)
+
+### Bug Fixes
+
+* **ci:** pin fossa-action back to the allowlisted SHA ([#544](https://github.com/marshmallow-insurance/campfire/issues/544)) ([f8c3cff](https://github.com/marshmallow-insurance/campfire/commit/f8c3cff22b49fa88cb2ccbe1c73e4f1dcd1344e5)), closes [#537](https://github.com/marshmallow-insurance/campfire/issues/537)
+* **ci:** restore typescript 5.9.3 and dedupe [@typescript-eslint](https://github.com/typescript-eslint) ([#545](https://github.com/marshmallow-insurance/campfire/issues/545)) ([ff69f2d](https://github.com/marshmallow-insurance/campfire/commit/ff69f2ddea098b3b09ecf234bc4414346ee13ab0))
+
 ## [7.0.3](https://github.com/marshmallow-insurance/campfire/compare/v7.0.2...v7.0.3) (2026-08-11)
 
 ## [7.0.2](https://github.com/marshmallow-insurance/campfire/compare/v7.0.1...v7.0.2) (2026-08-11)
