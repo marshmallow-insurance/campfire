@@ -3,17 +3,17 @@ description: 'Runs Fossa dependency analysis'
 
 inputs:
   api-key:
-    description: 'Fossa API key. When empty the analysis is skipped.'
-    required: false
+    description: 'Fossa API key'
+    required: true
 
 runs:
   using: 'composite'
   steps:
-    # Dependabot PRs (and forks) can't read repo secrets, so the key arrives empty
-    # and fossa-action hard-crashes. Skip instead — merge_main still scans main.
     - name: Run Fossa Dependency Analysis 🐛
-      if: inputs.api-key != ''
-      uses: fossas/fossa-action@8dea2e348349fad66e838ce0b365b044c6bf2011 # v2.0.0
+      # Pinned to this SHA because it is the only fossa-action revision on the org's
+      # allowed-actions list. Bumping (e.g. v2.0.0, 8dea2e34) fails every run at
+      # action-download time. Get the new SHA allowlisted first, then bump.
+      uses: fossas/fossa-action@93a52ecf7c3ac7eb40f5de77fd69b1a19524de94
       with:
         api-key: ${{ inputs.api-key }}
 
