@@ -3,13 +3,16 @@ description: 'Runs Fossa dependency analysis'
 
 inputs:
   api-key:
-    description: 'Fossa API key'
-    required: true
+    description: 'Fossa API key. When empty the analysis is skipped.'
+    required: false
 
 runs:
   using: 'composite'
   steps:
+    # Dependabot PRs (and forks) can't read repo secrets, so the key arrives empty
+    # and fossa-action hard-crashes. Skip instead — merge_main still scans main.
     - name: Run Fossa Dependency Analysis 🐛
+      if: inputs.api-key != ''
       uses: fossas/fossa-action@93a52ecf7c3ac7eb40f5de77fd69b1a19524de94
       with:
         api-key: ${{ inputs.api-key }}
