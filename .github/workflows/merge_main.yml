@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout (to access local action)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - uses: marshmallow-insurance/campfire/.github/actions/setup-node-project@main
       - name: Run Check Types
         run: |
