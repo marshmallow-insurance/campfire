@@ -1,3 +1,5 @@
+## [7.0.1](https://github.com/marshmallow-insurance/campfire/compare/v7.0.0...v7.0.1) (2026-08-11)
+
 ## [7.0.0](https://github.com/marshmallow-insurance/campfire/compare/v6.1.4...v7.0.0) (2026-08-11)
 
 ## [6.1.4](https://github.com/marshmallow-insurance/campfire/compare/v6.1.3...v6.1.4) (2026-07-23)
