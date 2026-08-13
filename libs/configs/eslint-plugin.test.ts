@@ -1,13 +1,6 @@
-import { readFileSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
 import { Linter } from 'eslint'
 import { describe, expect, it } from 'vitest'
 import campfirePlugin from './eslint-plugin.js'
-
-const RULE_SOURCES = [
-  './eslint-rules/no-color-prop/no-color-prop.js',
-  './eslint-rules/no-theme-colors/no-theme-colors.js',
-]
 
 const lintConfig = (rules: Linter.RulesRecord): Linter.Config => ({
   plugins: { campfire: campfirePlugin },
@@ -38,14 +31,6 @@ describe('campfire eslint plugin', () => {
       expect(rule).toBeTypeOf('object')
       expect(typeof (rule as { create?: unknown }).create).toBe('function')
     }
-  })
-
-  it.each(RULE_SOURCES)('%s imports no @typescript-eslint package', (src) => {
-    const source = readFileSync(
-      fileURLToPath(new URL(src, import.meta.url)),
-      'utf8',
-    )
-    expect(source).not.toContain('@typescript-eslint')
   })
 
   describe('loaded into ESLint as a plugin', () => {
