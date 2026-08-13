@@ -1,5 +1,3 @@
-import { ESLintUtils } from '@typescript-eslint/utils'
-
 const COLOR_MAP = {
   fairyFloss: 'color.surface.brand.100',
   bubblegum: 'color.surface.brand.200',
@@ -77,8 +75,8 @@ const DEFAULT_COLOR_PROPS = new Set([
   'activeColor',
 ])
 
-export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
-  name: 'no-color-prop',
+/** @type {import('eslint').Rule.RuleModule} */
+export const noColorPropRule = {
   meta: {
     type: 'problem',
     fixable: 'code',
@@ -103,7 +101,6 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
       },
     ],
   },
-  defaultOptions: [{}],
   create(context) {
     const options = context.options[0] || {}
     const additionalColorProps = new Set(options.additionalColorProps || [])
@@ -296,4 +293,4 @@ export const noColorPropRule = ESLintUtils.RuleCreator((name) => `${name}`)({
       },
     }
   },
-})
+}
