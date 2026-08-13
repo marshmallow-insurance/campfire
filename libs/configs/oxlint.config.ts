@@ -16,7 +16,17 @@ import { defineConfig, type OxlintConfig } from 'oxlint'
  * ```
  */
 const config = defineConfig({
-  plugins: ['typescript', 'jsx-a11y', 'promise', 'react', 'react-perf'],
+  // `vitest` rules have no filename scoping, but they only fire in files that
+  // import vitest APIs, so enabling the plugin globally covers test helpers and
+  // mock factories that a test-file glob would miss
+  plugins: [
+    'typescript',
+    'jsx-a11y',
+    'promise',
+    'react',
+    'react-perf',
+    'vitest',
+  ],
   categories: {
     correctness: 'error',
   },
@@ -52,6 +62,8 @@ const config = defineConfig({
       },
     ],
     'react-hooks/exhaustive-deps': 'warn', // Downgraded from correctness, too noisy to block on
+    'vitest/expect-expect': 'warn', // Downgraded from correctness
+    'vitest/no-disabled-tests': 'warn', // Downgraded from correctness
     'no-console': [
       'error',
       {
@@ -84,21 +96,6 @@ const config = defineConfig({
         'prefer-rest-params': 'error',
         'prefer-spread': 'error',
       },
-    },
-    {
-      files: [
-        '**/*.{test,spec}.{ts,tsx,js,jsx}',
-        'src/test/**',
-        '**/vitest.setup.{ts,tsx,js,jsx}',
-        '**/setupTests.{ts,tsx,js,jsx}',
-        '**/setupGlobals.{ts,tsx,js,jsx}',
-      ],
-      rules: {
-        'no-unused-expressions': 'off', // Causes false positives when calling render()
-        'vitest/expect-expect': 'warn',
-        'vitest/no-disabled-tests': 'warn',
-      },
-      plugins: ['vitest'],
     },
   ],
 })
