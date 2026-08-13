@@ -34,6 +34,40 @@ import { lintStagedConfig } from '@mrshmllw/campfire'
 export default lintStagedConfig
 ```
 
+### oxlint
+
+Extend the shared base config from your app's `oxlint.config.ts`:
+
+```ts
+// oxlint.config.ts
+import campfireConfig, {
+  nonInheritedConfig,
+} from '@mrshmllw/campfire/configs/oxlint.config'
+import { defineConfig } from 'oxlint'
+
+export default defineConfig({
+  extends: [campfireConfig],
+  ...nonInheritedConfig,
+  // App specific config goes here, after the spread so it wins
+  options: {
+    typeAware: true,
+  },
+})
+```
+
+Notes:
+
+- The spread is required: oxlint keeps only the extending config's `env`,
+  `globals`, `settings` and `ignorePatterns`, so those fields are exported
+  separately as `nonInheritedConfig` instead of being silently dropped.
+- `rules`, `categories`, `plugins`, `jsPlugins`, `overrides` and `options` are
+  inherited, with the app's values winning on conflict.
+- The base config leaves type aware linting to the app: set
+  `options.typeAware` and install `oxlint-tsgolint` to switch on the type aware
+  rules (`typescript/no-misused-promises`, `typescript/prefer-nullish-coalescing`).
+- `extends` with a package import only works in `oxlint.config.ts` /
+  `oxlint.config.mts`, not in `.oxlintrc.json`.
+
 ## Development
 
 Use [conventional commits](https://www.conventionalcommits.org/) for automatic changelog generation:
