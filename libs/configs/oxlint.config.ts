@@ -1,7 +1,9 @@
 import { defineConfig, type OxlintConfig } from 'oxlint'
 
 /**
- * Shared oxlint base config for Marshmallow frontends.
+ * Shared oxlint base config — framework agnostic, so it suits any TypeScript
+ * project. React projects should extend `oxlint.react.config` instead, which
+ * layers the React plugins and campfire's component rules on top of this.
  *
  * Extend it from your app's `oxlint.config.ts`:
  *
@@ -19,26 +21,11 @@ const config = defineConfig({
   // `vitest` rules have no filename scoping, but they only fire in files that
   // import vitest APIs, so enabling the plugin globally covers test helpers and
   // mock factories that a test-file glob would miss
-  plugins: [
-    'typescript',
-    'jsx-a11y',
-    'promise',
-    'react',
-    'react-perf',
-    'vitest',
-  ],
+  plugins: ['typescript', 'promise', 'vitest'],
   categories: {
     correctness: 'error',
   },
-  jsPlugins: [
-    {
-      name: 'campfire',
-      specifier: '@mrshmllw/campfire/configs/eslint-plugin',
-    },
-  ],
   rules: {
-    'campfire/no-color-prop': 'warn',
-    'campfire/no-theme-colors': 'warn',
     'typescript/ban-ts-comment': 'warn',
     // Type-aware rules, so they only run when the app sets `options.typeAware`
     // and installs `oxlint-tsgolint`
@@ -61,7 +48,6 @@ const config = defineConfig({
         },
       },
     ],
-    'react-hooks/exhaustive-deps': 'warn', // Downgraded from correctness, too noisy to block on
     'vitest/expect-expect': 'warn', // Downgraded from correctness
     'vitest/no-disabled-tests': 'warn', // Downgraded from correctness
     'no-console': [
@@ -111,10 +97,6 @@ export const nonInheritedConfig = {
     browser: true,
   },
   settings: {
-    react: {
-      version: '19',
-    },
-    jsdoc: {},
     vitest: {
       typecheck: false,
     },

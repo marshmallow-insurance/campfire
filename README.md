@@ -36,13 +36,20 @@ export default lintStagedConfig
 
 ### oxlint
 
-Extend the shared base config from your app's `oxlint.config.ts`:
+Two configs are available — pick one:
+
+| Config | Contents |
+|---|---|
+| `configs/oxlint.config` | Framework agnostic: TypeScript, promise and vitest rules |
+| `configs/oxlint.react.config` | The above plus React, React Perf and JSX a11y plugins, campfire's component rules and `react/react-compiler` |
+
+Extend it from your app's `oxlint.config.ts`:
 
 ```ts
 // oxlint.config.ts
 import campfireConfig, {
   nonInheritedConfig,
-} from '@mrshmllw/campfire/configs/oxlint.config'
+} from '@mrshmllw/campfire/configs/oxlint.react.config'
 import { defineConfig } from 'oxlint'
 
 export default defineConfig({
@@ -67,6 +74,8 @@ Notes:
   rules (`typescript/no-misused-promises`, `typescript/prefer-nullish-coalescing`).
 - `extends` with a package import only works in `oxlint.config.ts` /
   `oxlint.config.mts`, not in `.oxlintrc.json`.
+- `react/react-compiler` is a nursery rule, so it only runs because the React
+  config names it explicitly — enabling categories won't pick it up.
 
 ## Development
 
