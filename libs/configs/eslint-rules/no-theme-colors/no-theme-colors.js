@@ -1,7 +1,5 @@
-import { ESLintUtils } from '@typescript-eslint/utils'
-
-export const noThemeColorsRule = ESLintUtils.RuleCreator((name) => `${name}`)({
-  name: 'no-theme-colors',
+/** @type {import('eslint').Rule.RuleModule} */
+export const noThemeColorsRule = {
   meta: {
     type: 'problem',
     docs: {
@@ -13,7 +11,6 @@ export const noThemeColorsRule = ESLintUtils.RuleCreator((name) => `${name}`)({
     },
     schema: [],
   },
-  defaultOptions: [],
   create(context) {
     return {
       MemberExpression(node) {
@@ -28,4 +25,4 @@ export const noThemeColorsRule = ESLintUtils.RuleCreator((name) => `${name}`)({
       },
     }
   },
-})
+}
