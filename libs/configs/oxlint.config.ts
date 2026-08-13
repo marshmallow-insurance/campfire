@@ -1,23 +1,11 @@
 import { defineConfig, type OxlintConfig } from 'oxlint'
 
 /**
- * Shared oxlint base config — framework agnostic, so it suits any TypeScript
- * project. React projects should extend `oxlint.react.config` instead, which
- * layers the React plugins and campfire's component rules on top of this.
- *
- * Extend it from your app's `oxlint.config.ts`:
- *
- * ```ts
- * import campfireConfig, { nonInheritedConfig } from '@mrshmllw/campfire/configs/oxlint.config'
- * import { defineConfig } from 'oxlint'
- *
- * export default defineConfig({
- *   extends: [campfireConfig],
- *   ...nonInheritedConfig,
- * })
- * ```
+ * Rules, plugins and overrides — the fields oxlint inherits through `extends`.
+ * Exported so variants like `oxlint.react.config` can build on it; apps should
+ * spread this module's default export instead.
  */
-const config = defineConfig({
+export const extendableConfig = defineConfig({
   // `vitest` rules have no filename scoping, but they only fire in files that
   // import vitest APIs, so enabling the plugin globally covers test helpers and
   // mock factories that a test-file glob would miss
@@ -87,12 +75,12 @@ const config = defineConfig({
 })
 
 /**
- * Fields oxlint does *not* inherit through `extends` — it keeps only the extending
- * config's `env`, `globals`, `settings` and `ignorePatterns` (see `Oxlintrc::merge`
- * in oxc). Spread this into your root config to pick up the shared values, and add
- * your own after the spread to override them.
+ * The fields oxlint does *not* inherit through `extends` — it keeps only the
+ * extending config's `env`, `globals`, `settings` and `ignorePatterns` (see
+ * `Oxlintrc::merge` in oxc). They ride along in the default export so apps get
+ * them from the same spread.
  */
-export const nonInheritedConfig = {
+export const nonInheritedFields = {
   env: {
     browser: true,
   },
@@ -114,4 +102,24 @@ export const nonInheritedConfig = {
   ],
 } satisfies Pick<OxlintConfig, 'env' | 'settings' | 'ignorePatterns'>
 
-export default config
+/**
+ * Shared oxlint config — framework agnostic, so it suits any TypeScript
+ * project. React apps should use `oxlint.react.config` instead, which layers the
+ * React plugins and campfire's component rules on top of this one.
+ *
+ * Spread it into your app's `oxlint.config.ts`:
+ *
+ * ```ts
+ * import campfireConfig from '@mrshmllw/campfire/configs/oxlint.config'
+ * import { defineConfig } from 'oxlint'
+ *
+ * export default defineConfig({
+ *   ...campfireConfig,
+ *   // app specific config goes here, after the spread
+ * })
+ * ```
+ */
+export default {
+  extends: [extendableConfig],
+  ...nonInheritedFields,
+} satisfies OxlintConfig

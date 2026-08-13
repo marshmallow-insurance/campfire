@@ -43,19 +43,16 @@ Two configs are available — pick one:
 | `configs/oxlint.config` | Framework agnostic: TypeScript, promise and vitest rules |
 | `configs/oxlint.react.config` | The above plus React, React Perf and JSX a11y plugins, campfire's component rules and `react/react-compiler` |
 
-Extend it from your app's `oxlint.config.ts`:
+Spread it into your app's `oxlint.config.ts`:
 
 ```ts
 // oxlint.config.ts
-import campfireConfig, {
-  nonInheritedConfig,
-} from '@mrshmllw/campfire/configs/oxlint.react.config'
+import campfireConfig from '@mrshmllw/campfire/configs/oxlint.react.config'
 import { defineConfig } from 'oxlint'
 
 export default defineConfig({
-  extends: [campfireConfig],
-  ...nonInheritedConfig,
-  // App specific config goes here, after the spread so it wins
+  ...campfireConfig,
+  // App specific config goes here, after the spread
   options: {
     typeAware: true,
   },
@@ -64,11 +61,11 @@ export default defineConfig({
 
 Notes:
 
-- The spread is required: oxlint keeps only the extending config's `env`,
-  `globals`, `settings` and `ignorePatterns`, so those fields are exported
-  separately as `nonInheritedConfig` instead of being silently dropped.
-- `rules`, `categories`, `plugins`, `jsPlugins`, `overrides` and `options` are
-  inherited, with the app's values winning on conflict.
+- Adding your own `rules`, `plugins` or `overrides` after the spread is safe —
+  those arrive via `extends`, so oxlint merges them per rule with your app
+  winning on conflict. `env`, `settings` and `ignorePatterns` are plain fields,
+  so re-declaring one of those replaces the shared value: spread it if you mean
+  to add, e.g. `ignorePatterns: [...campfireConfig.ignorePatterns, 'src/gen/**']`.
 - The base config leaves type aware linting to the app: set
   `options.typeAware` and install `oxlint-tsgolint` to switch on the type aware
   rules (`typescript/no-misused-promises`, `typescript/prefer-nullish-coalescing`).
