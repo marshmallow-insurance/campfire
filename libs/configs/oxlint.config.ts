@@ -27,18 +27,11 @@ const config = defineConfig({
     },
   ],
   rules: {
-    'typescript/explicit-function-return-type': 'off',
     'campfire/no-color-prop': 'warn',
     'campfire/no-theme-colors': 'warn',
-    'no-unused-vars': [
-      'error',
-      {
-        varsIgnorePattern: '^_',
-      },
-    ],
-    // Type-aware rules only run when the app sets `options.typeAware` and installs `oxlint-tsgolint`
-    'typescript/no-floating-promises': 'off', // TODO: Enable once downstream apps have fixed all existing issues
     'typescript/ban-ts-comment': 'warn',
+    // Type-aware rules, so they only run when the app sets `options.typeAware`
+    // and installs `oxlint-tsgolint`
     'typescript/no-misused-promises': [
       'error',
       {
@@ -52,14 +45,13 @@ const config = defineConfig({
     'typescript/prefer-nullish-coalescing': [
       'warn',
       {
-        ignoreConditionalTests: true,
         ignoreMixedLogicalExpressions: true,
         ignorePrimitives: {
           boolean: true,
         },
       },
     ],
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'warn', // Downgraded from correctness, too noisy to block on
     'no-console': [
       'error',
       {
@@ -87,7 +79,9 @@ const config = defineConfig({
   },
   overrides: [
     {
-      // Rules the TypeScript compiler already reports
+      // Correctness rules the TypeScript compiler already reports, so oxlint
+      // does not repeat them. Rules from categories this config leaves off are
+      // not listed — they only need disabling if an app enables that category.
       files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
       rules: {
         'constructor-super': 'off',
@@ -99,7 +93,6 @@ const config = defineConfig({
         'no-import-assign': 'off',
         'no-new-native-nonconstructor': 'off',
         'no-obj-calls': 'off',
-        'no-redeclare': 'off',
         'no-setter-return': 'off',
         'no-this-before-super': 'off',
         'no-unsafe-negation': 'off',
