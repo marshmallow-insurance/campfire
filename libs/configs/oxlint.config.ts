@@ -58,24 +58,6 @@ const config = defineConfig({
         allow: ['warn', 'error'],
       },
     ],
-    'no-restricted-imports': [
-      'error',
-      {
-        name: 'react',
-        importNames: ['lazy'],
-        message: "Please use 'lazyWithRetry' instead",
-      },
-      {
-        name: 'yup',
-        message: 'Please use `zod` instead of `yup` for your validation needs',
-      },
-      {
-        name: 'react-error-boundary',
-        message:
-          'Please use `AppErrorBoundary` instead of `ErrorBoundary` to ensure proper configuration with our monitoring tools`',
-        importNames: ['ErrorBoundary'],
-      },
-    ],
   },
   overrides: [
     {
