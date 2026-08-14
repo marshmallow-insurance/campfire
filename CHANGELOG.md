@@ -1,3 +1,9 @@
+## [7.1.0](https://github.com/marshmallow-insurance/campfire/compare/v7.0.6...v7.1.0) (2026-08-14)
+
+### Features
+
+* **configs:** add shared oxlint base and react configs [RET-2301] ([#548](https://github.com/marshmallow-insurance/campfire/issues/548)) ([23ab0f5](https://github.com/marshmallow-insurance/campfire/commit/23ab0f55c2628c5ff3c1c05cf3d72abfe5411008))
+
 ## [7.0.6](https://github.com/marshmallow-insurance/campfire/compare/v7.0.5...v7.0.6) (2026-08-13)
 
 ## [7.0.5](https://github.com/marshmallow-insurance/campfire/compare/v7.0.4...v7.0.5) (2026-08-11)
