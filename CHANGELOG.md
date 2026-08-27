@@ -1,3 +1,16 @@
+## [8.0.0](https://github.com/marshmallow-insurance/campfire/compare/v7.1.0...v8.0.0) (2026-08-27)
+
+### ⚠ BREAKING CHANGES
+
+* **configs:** configs/oxlint.react.config now needs oxlint >= 1.79. The
+peerDependency range was raised to match.
+
+Co-authored-by: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+### Bug Fixes
+
+* **configs:** replace react/react-compiler with the split rules ([#557](https://github.com/marshmallow-insurance/campfire/issues/557)) ([0bf7efd](https://github.com/marshmallow-insurance/campfire/commit/0bf7efdfb04721a7409b644ac82599897b4b2d9d))
+
 ## [7.1.0](https://github.com/marshmallow-insurance/campfire/compare/v7.0.6...v7.1.0) (2026-08-14)
 
 ### Features
