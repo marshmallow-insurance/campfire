@@ -21,7 +21,13 @@ export const extendableConfig = defineConfig({
     'campfire/no-color-prop': 'warn',
     'campfire/no-theme-colors': 'warn',
     'react-hooks/exhaustive-deps': 'warn', // Downgraded from correctness, too noisy to block on
-    'react/react-compiler': 'error', // Nursery rule, so it only runs when named explicitly
+    // oxlint 1.79 split the nursery `react/react-compiler` rule into one rule per
+    // React Compiler diagnostic category. Most of them landed in `correctness`,
+    // so the base config's `categories` already turns them on. `react/hooks` is
+    // the one Rules of React check that sits outside `correctness`, so it still
+    // needs naming here. The remaining compiler rules stay off: they report
+    // compiler limitations rather than bugs in the app.
+    'react/hooks': 'error',
   },
 })
 
@@ -38,8 +44,8 @@ export const nonInheritedFields = {
 
 /**
  * Shared oxlint config for Marshmallow React apps: everything in
- * `oxlint.config` plus the React plugins, campfire's component rules and
- * `react/react-compiler`.
+ * `oxlint.config` plus the React plugins, campfire's component rules and the
+ * React Compiler checks.
  *
  * Spread it into your app's `oxlint.config.ts`:
  *
