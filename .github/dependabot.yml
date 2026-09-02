@@ -6,6 +6,8 @@ updates:
     directory: '/'
     cooldown:
       default-days: 7
+      exclude:
+        - "@mrshmllw/*"
     schedule:
       interval: daily
       time: '05:00'
