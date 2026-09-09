@@ -24,16 +24,34 @@
       "types": "./dist/utils/*.d.ts",
       "import": "./dist/utils/*.js"
     },
+    "./telemetry": {
+      "types": "./dist/telemetry/index.d.ts",
+      "import": "./dist/telemetry/index.js"
+    },
+    "./telemetry/react": {
+      "types": "./dist/telemetry/react.d.ts",
+      "import": "./dist/telemetry/react.js"
+    },
+    "./telemetry/testing": {
+      "types": "./dist/telemetry/testing.d.ts",
+      "import": "./dist/telemetry/testing.js"
+    },
     "./workflows/*": "./dist/workflows/*"
   },
   "files": [
     "dist"
   ],
   "peerDependencies": {
+    "@braze/web-sdk": ">=5",
     "@commitlint/cli": ">=20",
     "@commitlint/types": ">=20",
+    "@datadog/browser-logs": ">=6",
+    "@datadog/browser-rum": ">=6",
+    "@mrshmllw/event-registry-client": ">=1",
+    "@segment/analytics-next": ">=1",
     "@semantic-release/changelog": ">=6",
     "@semantic-release/git": ">=10",
+    "@sentry/react": ">=9",
     "@typescript-eslint/eslint-plugin": ">=8",
     "@typescript-eslint/parser": ">=8",
     "conventional-changelog-conventionalcommits": ">=9",
@@ -44,16 +62,29 @@
     "lint-staged": ">=15",
     "oxlint": ">=1.79",
     "prettier": ">=3",
+    "react": ">=18",
     "semantic-release": ">=25"
   },
   "peerDependenciesMeta": {
+    "@braze/web-sdk": {
+      "optional": true
+    },
     "@commitlint/cli": {
       "optional": true
     },
     "@commitlint/types": {
       "optional": true
     },
-    "conventional-changelog-conventionalcommits": {
+    "@datadog/browser-logs": {
+      "optional": true
+    },
+    "@datadog/browser-rum": {
+      "optional": true
+    },
+    "@mrshmllw/event-registry-client": {
+      "optional": true
+    },
+    "@segment/analytics-next": {
       "optional": true
     },
     "@semantic-release/changelog": {
@@ -62,10 +93,16 @@
     "@semantic-release/git": {
       "optional": true
     },
+    "@sentry/react": {
+      "optional": true
+    },
     "@typescript-eslint/eslint-plugin": {
       "optional": true
     },
     "@typescript-eslint/parser": {
+      "optional": true
+    },
+    "conventional-changelog-conventionalcommits": {
       "optional": true
     },
     "eslint": {
@@ -77,27 +114,36 @@
     "eslint-plugin-prettier": {
       "optional": true
     },
-    "prettier": {
-      "optional": true
-    },
     "husky": {
       "optional": true
     },
     "lint-staged": {
       "optional": true
     },
-    "semantic-release": {
+    "oxlint": {
       "optional": true
     },
-    "oxlint": {
+    "prettier": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "semantic-release": {
       "optional": true
     }
   },
   "devDependencies": {
+    "@braze/web-sdk": "^6.11.0",
     "@commitlint/cli": "^21.2.1",
     "@commitlint/types": "^21.2.0",
+    "@datadog/browser-logs": "^7.9.0",
+    "@datadog/browser-rum": "^7.9.0",
+    "@segment/analytics-next": "^1.84.1",
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/git": "^11.0.1",
+    "@sentry/react": "^10.71.0",
+    "@types/react": "^19.2.18",
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
     "concurrently": "^10.0.4",
@@ -109,6 +155,7 @@
     "lint-staged": "^17.3.0",
     "oxlint": "^1.79.0",
     "prettier": "^3.6.2",
+    "react": "^19.2.8",
     "rimraf": "^6.1.0",
     "semantic-release": "^25.0.3",
     "typescript": "^5.9.3",
